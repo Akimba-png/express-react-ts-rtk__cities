@@ -1,4 +1,4 @@
-function PropertyPage(): JSX.Element {
+function Room(): JSX.Element {
   return (
     <div className="page">
       <header className="header">
@@ -488,4 +488,4 @@ function PropertyPage(): JSX.Element {
   );
 }
 
-export default PropertyPage;
+export default Room;

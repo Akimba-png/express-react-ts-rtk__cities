@@ -1,4 +1,4 @@
-function MainPage(): JSX.Element {
+function Main(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -363,4 +363,4 @@ function MainPage(): JSX.Element {
   );
 }
 
-export default MainPage;
+export default Main;

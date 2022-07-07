@@ -1,4 +1,4 @@
-function NotFoundPage(): JSX.Element {
+function NotFound(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -98,4 +98,4 @@ function NotFoundPage(): JSX.Element {
   );
 }
 
-export default NotFoundPage;
+export default NotFound;
