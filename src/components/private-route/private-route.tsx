@@ -5,7 +5,7 @@ type PrivateRouteProps = {
 }
 
 function PrivateRoute({children}: PrivateRouteProps): JSX.Element {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   return isAuthenticated ? children : <Navigate to='/login'/>;
 }
