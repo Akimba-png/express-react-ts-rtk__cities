@@ -1,3 +1,5 @@
+import { Hotel } from '../../../types/hotel';
+
 type Style = {
   Article: string;
   Wrapper: string;
@@ -8,11 +10,12 @@ type Style = {
 
 type CardProps = {
   cardStyle: Style;
+  hotelData: Hotel;
 };
 
-function Card({ cardStyle }: CardProps): JSX.Element {
-  const { Article, Wrapper, ImageWidth, ImageHeight, CardInfo } =
-    cardStyle;
+function Card({ cardStyle, hotelData }: CardProps): JSX.Element {
+  const { Article, Wrapper, ImageWidth, ImageHeight, CardInfo } = cardStyle;
+  const {title} = hotelData;
   return (
     <article className={`${Article} place-card`}>
       <div className="place-card__mark">
@@ -49,7 +52,7 @@ function Card({ cardStyle }: CardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>

@@ -1,3 +1,4 @@
+import { Hotel } from '../../../types/hotel';
 import Card from '../card/card';
 
 enum FavoritesCardStyle {
@@ -8,8 +9,8 @@ enum FavoritesCardStyle {
   CardInfo = 'favorites__card-info',
 }
 
-function FavoritesCard(): JSX.Element {
-  return <Card cardStyle={FavoritesCardStyle} />;
+function FavoritesCard(props: {hotelData: Hotel}): JSX.Element {
+  return <Card cardStyle={FavoritesCardStyle} {...props} />;
 }
 
 export default FavoritesCard;

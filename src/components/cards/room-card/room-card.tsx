@@ -1,3 +1,4 @@
+import { Hotel } from '../../../types/hotel';
 import Card from '../card/card';
 
 enum RoomCardStyle {
@@ -8,8 +9,8 @@ enum RoomCardStyle {
   CardInfo = '',
 }
 
-function RoomCard(): JSX.Element {
-  return <Card cardStyle={RoomCardStyle}/>;
+function RoomCard(props: {hotelData: Hotel}): JSX.Element {
+  return <Card cardStyle={RoomCardStyle} {...props}/>;
 }
 
 export default RoomCard;
