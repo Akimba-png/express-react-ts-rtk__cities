@@ -1,26 +1,24 @@
-import { Hotel } from './types/hotel';
+export const adaptOfferToClient = () => {
+  // const adaptedOffer = Object.assign({}, offer, {
+  //   previewImage: offer.preview_image,
+  //   isFavorite: offer.is_favorite,
+  //   isPremium: offer.is_premium,
+  //   maxAdults: offer.max_adults,
+  //   host: Object.assign(
+  //     {},
+  //     offer.host,
+  //     {
+  //       isPro: offer.host.is_pro,
+  //       avatarUrl: offer.host.avatar_url,
+  //     }),
+  // });
 
-export const adaptHotelToClient = (hotel: Hotel) => {
-  const adaptedHotel = Object.assign({}, hotel, {
-    previewImage: hotel.preview_image,
-    isFavorite: hotel.is_favorite,
-    isPremium: hotel.is_premium,
-    maxAdults: hotel.max_adults,
-    host: Object.assign(
-      {},
-      hotel.host,
-      {
-        isPro: hotel.host.is_pro,
-        avatarUrl: hotel.host.avatar_url,
-      }),
-  });
+  // delete adaptedOffer.preview_image;
+  // delete adaptedOffer.is_favorite;
+  // delete adaptedOffer.is_premium;
+  // delete adaptedOffer.max_adults;
+  // delete adaptedOffer.host.is_pro;
+  // delete adaptedOffer.host.avatar_url;
 
-  delete adaptedHotel.preview_image;
-  delete adaptedHotel.is_favorite;
-  delete adaptedHotel.is_premium;
-  delete adaptedHotel.max_adults;
-  delete adaptedHotel.host.is_pro;
-  delete adaptedHotel.host.avatar_url;
-
-  return adaptedHotel;
+  // return adaptedOffer;
 };

@@ -1,5 +1,5 @@
 import MainCard from '../../components/cards/main-card/main-card';
-import { hotels } from '../../mock';
+import { offers } from '../../mock';
 
 function Main(): JSX.Element {
   return (
@@ -112,7 +112,7 @@ function Main(): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {hotels.map((hotelData) => <MainCard hotelData={hotelData} key={hotelData.id} />)}
+                {offers.map((hotelData) => <MainCard hotelData={hotelData} key={hotelData.id} />)}
               </div>
             </section>
             <div className="cities__right-section">

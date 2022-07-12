@@ -1,5 +1,5 @@
-import { Hotel } from '../../../types/hotel';
 import Card from '../card/card';
+import { Offer } from '../../../types/offer';
 
 enum FavoritesCardStyle {
   Article = 'favorites__card',
@@ -9,7 +9,7 @@ enum FavoritesCardStyle {
   CardInfo = 'favorites__card-info',
 }
 
-function FavoritesCard(props: {hotelData: Hotel}): JSX.Element {
+function FavoritesCard(props: {hotelData: Offer}): JSX.Element {
   return <Card cardStyle={FavoritesCardStyle} {...props} />;
 }
 

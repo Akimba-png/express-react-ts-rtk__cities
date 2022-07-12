@@ -1,5 +1,5 @@
 import RoomCard from '../../components/cards/room-card/room-card';
-import { hotels } from '../../mock';
+import { offers } from '../../mock';
 
 function Room(): JSX.Element {
   return (
@@ -343,7 +343,7 @@ function Room(): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              {hotels.map((hotelData) => <RoomCard hotelData={hotelData} key={hotelData.id} />)}
+              {offers.map((hotelData) => <RoomCard hotelData={hotelData} key={hotelData.id} />)}
             </div>
           </section>
         </div>

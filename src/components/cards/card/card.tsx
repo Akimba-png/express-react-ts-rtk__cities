@@ -1,4 +1,4 @@
-import { Hotel } from '../../../types/hotel';
+import { Offer } from '../../../types/offer';
 
 type Style = {
   Article: string;
@@ -10,7 +10,7 @@ type Style = {
 
 type CardProps = {
   cardStyle: Style;
-  hotelData: Hotel;
+  hotelData: Offer;
 };
 
 function Card({ cardStyle, hotelData }: CardProps): JSX.Element {

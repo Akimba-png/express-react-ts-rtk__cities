@@ -1,5 +1,5 @@
 import FavoritesCard from '../../components/cards/favorites-card/favorites-card';
-import { hotels } from '../../mock';
+import { offers } from '../../mock';
 
 function Favorites(): JSX.Element {
   return (
@@ -56,7 +56,7 @@ function Favorites(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {hotels.map((hotelData) => (
+                  {offers.map((hotelData) => (
                     <FavoritesCard hotelData={hotelData} key={hotelData.id} />
                   ))}
                 </div>

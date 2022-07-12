@@ -12,21 +12,21 @@ type City = {
 type Host = {
   id: number;
   name: string;
-  is_pro?: boolean;
-  avatar_url?: string;
+  isPro: boolean;
+  avatarUrl: string;
 };
 
-export type Hotel = {
+export type Offer = {
   city: City;
-  preview_image?: string;
+  previewImage: string;
   images: string[];
   title: string;
-  is_favorite?: boolean;
-  is_premium?: boolean;
+  isFavorite: boolean;
+  isPremium: boolean;
   rating: number;
   type: string;
   bedrooms: number;
-  max_adults?: number;
+  maxAdults: number;
   price: number;
   goods: string[];
   host: Host;

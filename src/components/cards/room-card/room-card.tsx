@@ -1,5 +1,5 @@
-import { Hotel } from '../../../types/hotel';
 import Card from '../card/card';
+import { Offer } from '../../../types/offer';
 
 enum RoomCardStyle {
   Article = 'near-places__card',
@@ -9,7 +9,7 @@ enum RoomCardStyle {
   CardInfo = '',
 }
 
-function RoomCard(props: {hotelData: Hotel}): JSX.Element {
+function RoomCard(props: {hotelData: Offer}): JSX.Element {
   return <Card cardStyle={RoomCardStyle} {...props}/>;
 }
 
