@@ -1,9 +1,12 @@
+import { offers } from "./mock";
+
 export const adaptOfferToClient = () => {
   // const adaptedOffer = Object.assign({}, offer, {
   //   previewImage: offer.preview_image,
   //   isFavorite: offer.is_favorite,
   //   isPremium: offer.is_premium,
   //   maxAdults: offer.max_adults,
+  //   type: offers.type.replace(/^\w/, (m: string) => m.toUpperCase()),
   //   host: Object.assign(
   //     {},
   //     offer.host,

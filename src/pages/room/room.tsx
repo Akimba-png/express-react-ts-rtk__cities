@@ -1,7 +1,26 @@
 import RoomCard from '../../components/cards/room-card/room-card';
+import NotFound from '../not-found/not-found';
+import { useParams } from 'react-router-dom';
 import { offers } from '../../mock';
+import { Offer } from '../../types/offer';
+
+type Param = {
+  offerId: string;
+};
+
+const getOfferById = (offerId: string, offers: Offer[]): Offer | undefined => {
+  return offers.filter((offer) => Number(offerId) === offer.id)[0];
+};
 
 function Room(): JSX.Element {
+
+  const {offerId} = useParams() as Param;
+  const offer = getOfferById(offerId, offers);
+
+  if (!offer) {
+    return <NotFound />
+  }
+
   return (
     <div className="page">
       <header className="header">

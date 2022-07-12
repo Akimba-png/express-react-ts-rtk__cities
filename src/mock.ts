@@ -74,7 +74,7 @@ export const offers: Offer[] = [
     title: 'Wood and stone place',
     isFavorite: false,
     isPremium: false,
-    rating: 4.9,
+    rating: 3.9,
     type: 'room',
     bedrooms: 1,
     maxAdults: 2,
