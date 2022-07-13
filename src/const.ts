@@ -12,4 +12,4 @@ export enum StarRating {
   '60%',
   '80%',
   '100%',
-};
+}

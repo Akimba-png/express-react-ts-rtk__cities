@@ -1,5 +1,4 @@
-import { offers } from "./mock";
-
+import { Offer } from './types/offer';
 export const adaptOfferToClient = () => {
   // const adaptedOffer = Object.assign({}, offer, {
   //   previewImage: offer.preview_image,
@@ -15,13 +14,21 @@ export const adaptOfferToClient = () => {
   //       avatarUrl: offer.host.avatar_url,
   //     }),
   // });
-
   // delete adaptedOffer.preview_image;
   // delete adaptedOffer.is_favorite;
   // delete adaptedOffer.is_premium;
   // delete adaptedOffer.max_adults;
   // delete adaptedOffer.host.is_pro;
   // delete adaptedOffer.host.avatar_url;
-
   // return adaptedOffer;
 };
+
+
+export const checkPluralPostfix = (value: number, text: string) =>
+  value > 1 ? `${text}s` : text;
+
+export const getOfferById = (
+  offerId: string,
+  offers: Offer[]
+): Offer | undefined =>
+  offers.filter((offer) => Number(offerId) === offer.id)[0];
