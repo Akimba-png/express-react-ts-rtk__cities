@@ -1,3 +1,4 @@
+import Map from '../../components/map/map';
 import MainCard from '../../components/cards/main-card/main-card';
 import { offers } from '../../mock';
 
@@ -116,7 +117,7 @@ function Main(): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map offers={offers}/>
             </div>
           </div>
         </div>
