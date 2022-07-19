@@ -1,21 +1,22 @@
-import L from 'leaflet';
+import { Map, TileLayer } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Location } from '../types/offer';
-import { useRef, useEffect, MutableRefObject } from 'react';
-
+import { useState, useEffect, MutableRefObject } from 'react';
 
 export const useMap = (mapRef: MutableRefObject<HTMLElement | null>, mapDetail: Location) => {
-  const {latitude, longitude, zoom} = mapDetail;
-  const mapInstance = useRef<L.Map | null>(null);
+  const [map, setMap] = useState<L.Map | null>(null);
   useEffect(() => {
-    if (mapRef.current !== null && mapInstance.current === null) {
-      mapInstance.current = L.map(mapRef.current).setView([latitude, longitude], zoom);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const {latitude, longitude, zoom} = mapDetail;
+    if (mapRef.current !== null && map === null) {
+      const mapInstance = new Map(mapRef.current, {center: [latitude, longitude], zoom: zoom});
+      const tileInstance = new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(mapInstance.current);
+      });
+      mapInstance.addLayer(tileInstance);
+      setMap(mapInstance);
     }
-  }, [mapDetail]);
-  return mapInstance.current;
+    return () => {mapRef.current = null;};
+  }, [map, mapRef, mapDetail]);
+  return map;
 };
