@@ -5,6 +5,10 @@ export enum AppRoute {
   Favorites = '/favorites',
 }
 
+export enum ApiRoute {
+  Offers = '/hotels',
+}
+
 export enum StarRating {
   '0%',
   '20%',
@@ -22,6 +26,6 @@ export enum IconUrl {
 export const IconData = {
   SIZES: [27, 39] as [number, number],
   ANCHORE_COORDINATES: [14, 39] as [number, number],
-};
+} as const;
 
 export const FIRST_ELEMENT_INDEX = 0;
