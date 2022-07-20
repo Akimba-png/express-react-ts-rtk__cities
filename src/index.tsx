@@ -4,9 +4,18 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './store/root-reducer';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
+import { createApi } from './store/api';
+
+const api = createApi(() => {'logout cb';});
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }),
 });
 
 const root = ReactDOM.createRoot(
