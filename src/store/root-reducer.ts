@@ -8,3 +8,5 @@ enum NameSpace {
 export const rootReducer = combineReducers({
   [NameSpace.Data]: appData,
 });
+
+export type State = ReturnType<typeof rootReducer>;

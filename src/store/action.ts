@@ -10,3 +10,4 @@ export const setOffers = (offers: Offers) => ({
 });
 
 export type AppDataActions = ReturnType<typeof setOffers>;
+export type Action = AppDataActions;

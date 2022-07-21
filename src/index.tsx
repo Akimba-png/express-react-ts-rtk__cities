@@ -32,6 +32,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-
-export type AppDispatch = typeof store.dispatch;
-export type AppGetState = typeof store.getState;
