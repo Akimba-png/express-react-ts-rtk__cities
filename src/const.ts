@@ -29,3 +29,5 @@ export const IconData = {
 } as const;
 
 export const FIRST_ELEMENT_INDEX = 0;
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+export const DEFAULT_CITY = 'Paris';
