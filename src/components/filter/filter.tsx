@@ -7,8 +7,22 @@ import { setActiveFilter } from './../../store/action';
 import { getActiveFilter } from '../../store/app-interface/selector';
 import { CITIES } from './../../const';
 
+const mapStateToProps = (state: State) => ({
+  activeFilter: getActiveFilter(state),
+});
 
-function Filter({ activeFilter, onFilterChange }: PropsFromRedux) {
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  onFilterChange(choosenCity: string) {
+    dispatch(setActiveFilter(choosenCity));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedFilterProps = PropsFromRedux
+
+function Filter({ activeFilter, onFilterChange }: ConnectedFilterProps) {
 
   const handleFilterChange =
     (city: string) => (evt: MouseEvent<HTMLAnchorElement>) => {
@@ -39,18 +53,5 @@ function Filter({ activeFilter, onFilterChange }: PropsFromRedux) {
     </div>
   );
 }
-
-const mapStateToProps = (state: State) => ({
-  activeFilter: getActiveFilter(state),
-});
-
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  onFilterChange(choosenCity: string) {
-    dispatch(setActiveFilter(choosenCity));
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
 
 export default connector(Filter);
