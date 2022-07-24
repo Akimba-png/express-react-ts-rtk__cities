@@ -30,4 +30,6 @@ export const IconData = {
 
 export const FIRST_ELEMENT_INDEX = 0;
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+export const SORTING_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'] as const;
 export const DEFAULT_CITY = 'Paris';
+export const DEFAULT_SORTING_TYPE = 'Popular';
