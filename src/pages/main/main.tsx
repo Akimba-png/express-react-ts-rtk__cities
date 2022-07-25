@@ -1,8 +1,8 @@
 import Map from '../../components/map/map';
-import MainCard from '../../components/cards/main-card/main-card';
 import { offers } from '../../mock';
 import Filter from '../../components/filter/filter';
 import Sorting from '../../components/sorting/sorting';
+import MainCardsContainer from '../../components/main-cards-container/main-cards-container';
 
 function Main(): JSX.Element {
   return (
@@ -54,9 +54,7 @@ function Main(): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">312 places to stay in Amsterdam</b>
               <Sorting />
-              <div className="cities__places-list places__list tabs__content">
-                {offers.map((hotelData) => <MainCard hotelData={hotelData} key={hotelData.id} />)}
-              </div>
+              <MainCardsContainer />
             </section>
             <div className="cities__right-section">
               <Map offers={offers}/>

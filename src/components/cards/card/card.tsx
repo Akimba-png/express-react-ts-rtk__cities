@@ -13,10 +13,10 @@ type Style = {
 type CardProps = {
   cardStyle: Style;
   hotelData: Offer;
+  onMouseEvent?: (id: number | null) => void;
 };
 
-function Card({ cardStyle, hotelData }: CardProps): JSX.Element {
-
+function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
   const { Article, Wrapper, ImageWidth, ImageHeight, CardInfo } = cardStyle;
   const {
     id,
@@ -29,8 +29,22 @@ function Card({ cardStyle, hotelData }: CardProps): JSX.Element {
     previewImage,
   } = hotelData;
 
+  const setMouseListener = (cardId: number) => {
+    if (onMouseEvent) {
+      return {
+        onMouseOver() {
+          onMouseEvent(cardId);
+        },
+        onMouseLeave() {
+          onMouseEvent(null);
+        },
+      };
+    }
+    return {};
+  };
+
   return (
-    <article className={`${Article} place-card`}>
+    <article {...setMouseListener(id)} className={`${Article} place-card`}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
