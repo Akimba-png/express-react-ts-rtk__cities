@@ -35,4 +35,29 @@ export type Offer = {
   id: number;
 };
 
+export type OfferServer = {
+  city: City;
+  preview_image?: string;
+  images: string[];
+  title: string;
+  is_favorite?: boolean;
+  is_premium?: boolean;
+  rating: number;
+  type: string;
+  bedrooms: number;
+  max_adults?: number;
+  price: number;
+  goods: string[];
+  host: {
+    id: number;
+    name: string;
+    is_pro?: boolean;
+    avatar_url?: string;
+  };
+  description: string;
+  location: Location;
+  id: number;
+};
+
+
 export type Offers = Offer[];

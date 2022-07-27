@@ -1,8 +1,9 @@
 import { connect, ConnectedProps } from 'react-redux';
 import { AppDispatch } from '../../types/thunk';
 import { setActiveCardId } from '../../store/action';
+import { getSortedOffers } from '../../store/selector';
+import { State } from '../../store/root-reducer';
 import Card from '../cards/card/card';
-import { offers } from './../../mock';
 
 enum MainCardStyle {
   Article = 'cities__place-card',
@@ -12,20 +13,24 @@ enum MainCardStyle {
   CardInfo = '',
 }
 
+const mapStateToProps = (state: State) => ({
+  sortedOffers: getSortedOffers(state),
+});
+
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   handleActiveCardChange(id: number | null) {
     dispatch(setActiveCardId(id));
   },
 });
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-function MainCardsContainer({handleActiveCardChange}: PropsFromRedux): JSX.Element {
+function MainCardsContainer({sortedOffers, handleActiveCardChange}: PropsFromRedux): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((hotelData) => (
+      {sortedOffers.map((hotelData) => (
         <Card cardStyle={MainCardStyle} hotelData={hotelData} key={hotelData.id} onMouseEvent={handleActiveCardChange}/>
       ))}
     </div>

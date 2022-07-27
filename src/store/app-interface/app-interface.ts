@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { setActiveFilter, setCurrentSortType, setActiveCardId } from './../action';
-import { DEFAULT_CITY, DEFAULT_SORTING_TYPE } from '../../const';
+import { DEFAULT_CITY, SortingOptions } from '../../const';
 
 type InintialState = {
   activeFilter: string,
@@ -10,7 +10,7 @@ type InintialState = {
 
 const initialState = {
   activeFilter: DEFAULT_CITY,
-  currentSortingType: DEFAULT_SORTING_TYPE,
+  currentSortingType: SortingOptions.Popular,
   currentActiveCard: null,
 } as InintialState;
 

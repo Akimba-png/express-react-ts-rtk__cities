@@ -4,7 +4,7 @@ import { AppDispatch } from '../../types/thunk';
 import { State } from './../../store/root-reducer';
 import { setCurrentSortType } from '../../store/action';
 import { getCurrentSortType } from '../../store/app-interface/selector';
-import { SORTING_OPTIONS } from './../../const';
+import { SortingOptions } from './../../const';
 
 
 const mapStateToProps = (state: State) => ({
@@ -45,7 +45,7 @@ function Sorting({currentSortType, onSortingChange}: ConnectedSortingProps): JSX
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${listStatus ? 'places__options--opened' : ''}`}>
-        {SORTING_OPTIONS.map((sortOption, i) => {
+        {Object.values(SortingOptions).map((sortOption, i) => {
           const keyPropValue: string = sortOption + i.toString();
           return (
             <li onClick={handleSortItemClick(sortOption, i)} key={keyPropValue} className={`places__option ${itemesStatus[i] ? 'places__option--active' : ''}`} tabIndex={0}>

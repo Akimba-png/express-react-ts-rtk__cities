@@ -1,12 +1,14 @@
-import { Offers } from './../types/offer';
+import { Offers, OfferServer } from './../types/offer';
 import { setOffers } from './action';
 import { ApiRoute } from './../const';
 import { ThunkCreatorResult } from '../types/thunk';
+import { adaptOfferToClient } from '../util';
 
 
 export const loadOffers =
   (): ThunkCreatorResult => (dispatch, _getState, api) => {
     api
-      .get<Offers>(ApiRoute.Offers)
-      .then((response) => dispatch(setOffers(response.data)));
+      .get<OfferServer[]>(ApiRoute.Offers)
+      .then((response) => response.data.map((offer: OfferServer) => adaptOfferToClient(offer)))
+      .then((offers: Offers) => dispatch(setOffers(offers)));
   };
