@@ -2,6 +2,7 @@ import Filter from '../../components/filter/filter';
 import Sorting from '../../components/sorting/sorting';
 import MainCardsContainer from '../../components/main-cards-container/main-cards-container';
 import MainPageMap from '../../components/maps/main-page-map/main-page-map';
+import MainPageTitle from '../../components/main-page-title/main-page-title';
 
 function Main(): JSX.Element {
   return (
@@ -51,7 +52,7 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <MainPageTitle />
               <Sorting />
               <MainCardsContainer />
             </section>
