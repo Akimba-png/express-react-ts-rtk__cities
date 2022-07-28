@@ -1,8 +1,7 @@
-import Map from '../../components/map/map';
-import { offers } from '../../mock';
 import Filter from '../../components/filter/filter';
 import Sorting from '../../components/sorting/sorting';
 import MainCardsContainer from '../../components/main-cards-container/main-cards-container';
+import MainPageMap from '../../components/maps/main-page-map/main-page-map';
 
 function Main(): JSX.Element {
   return (
@@ -57,7 +56,7 @@ function Main(): JSX.Element {
               <MainCardsContainer />
             </section>
             <div className="cities__right-section">
-              <Map offers={offers}/>
+              <MainPageMap />
             </div>
           </div>
         </div>

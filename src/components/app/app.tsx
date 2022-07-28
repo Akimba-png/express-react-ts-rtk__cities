@@ -1,13 +1,22 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { checkDataLoaded } from '../../store/app-data/selector';
 import Main from '../../pages/main/main';
 import SignIn from '../../pages/signIn/signIn';
 import Room from '../../pages/room/room';
 import Favorites from '../../pages/favorites/favorites';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
 function App(): JSX.Element {
+
+  const isDataLoaded = useSelector(checkDataLoaded);
+
+  if (!isDataLoaded) {
+    return (<h1>Loading</h1>);
+  }
+
   return (
     <BrowserRouter>
       <Routes>

@@ -1,15 +1,21 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { Offer } from '../types/offer';
+import { Offer, Offers } from '../types/offer';
 import { getOffers } from './app-data/selector';
 import { getActiveFilter, getCurrentSortType } from './app-interface/selector';
 import { SortingOptions } from '../const';
+
+export const getFilteredOffers = createSelector(
+  getOffers,
+  getActiveFilter,
+  (offers, activeFilter) => offers.filter((offer) => offer.city.name === activeFilter),
+);
 
 export const getSortedOffers = createSelector(
   getOffers,
   getActiveFilter,
   getCurrentSortType,
   (offers, activeFilter, currentSortType) => {
-    const filteredOffers = offers.filter(
+    const filteredOffers: Offers = offers.filter(
       (offer) => offer.city.name === activeFilter
     );
     switch (currentSortType) {
