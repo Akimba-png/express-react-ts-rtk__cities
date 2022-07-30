@@ -7,6 +7,7 @@ import { IconUrl, IconData, FIRST_ELEMENT_INDEX } from './../../const';
 type MapProps = {
   offers: Offer[];
   currentActiveCard: number | null;
+  mapStyle: string;
 };
 
 const getPin = (cardId: number, activeCardId: number | null) => L.icon({
@@ -16,7 +17,7 @@ const getPin = (cardId: number, activeCardId: number | null) => L.icon({
 });
 
 
-function Map({ offers, currentActiveCard }: MapProps): JSX.Element {
+function Map({ offers, currentActiveCard, mapStyle }: MapProps): JSX.Element {
 
   const cityLocation: Location = offers[FIRST_ELEMENT_INDEX].city.location;
   const mapRef = useRef<HTMLElement | null>(null);
@@ -47,7 +48,7 @@ function Map({ offers, currentActiveCard }: MapProps): JSX.Element {
     }
   });
 
-  return <section ref={mapRef} className="cities__map map"></section>;
+  return <section ref={mapRef} className={`${mapStyle} map`}></section>;
 }
 
 export default Map;
