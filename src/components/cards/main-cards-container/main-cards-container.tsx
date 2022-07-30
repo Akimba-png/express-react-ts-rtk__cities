@@ -1,9 +1,9 @@
 import { connect, ConnectedProps } from 'react-redux';
-import { AppDispatch } from '../../types/thunk';
-import { setActiveCardId } from '../../store/action';
-import { getSortedOffers } from '../../store/selector';
-import { State } from '../../store/root-reducer';
-import Card from '../cards/card/card';
+import { AppDispatch } from '../../../types/thunk';
+import { setActiveCardId } from '../../../store/action';
+import { getSortedOffers } from '../../../store/selector';
+import { State } from '../../../store/root-reducer';
+import Card from '../card/card';
 
 enum MainCardStyle {
   Article = 'cities__place-card',
