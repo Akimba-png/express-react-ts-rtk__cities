@@ -1,22 +1,28 @@
-import RoomCard from '../../components/cards/room-card/room-card';
-import NotFound from '../not-found/not-found';
 import { useParams } from 'react-router-dom';
-import { offers } from '../../mock';
+import { useSelector } from 'react-redux';
+import { Offers } from './../../types/offer';
+import { getOffers } from './../../store/app-data/selector';
 import RoomImage from '../../components/room-image/room-image';
+import RoomCardsContainer from '../../components/cards/room-cards-container/room-cards-container';
+import NotFound from '../not-found/not-found';
+import { checkPluralPostfix, getOfferById, getOffersNearby } from '../../util';
 import { StarRating } from '../../const';
-import { checkPluralPostfix, getOfferById } from '../../util';
 
 type Param = {
   offerId: string;
 };
 
 function Room(): JSX.Element {
-  const { offerId } = useParams() as Param;
-  const offer = getOfferById(offerId, offers);
 
-  if (!offer) {
+  const { offerId } = useParams() as Param;
+  const offers: Offers = useSelector(getOffers);
+
+  const currentOffer = getOfferById(offerId, offers);
+
+  if (!currentOffer) {
     return <NotFound />;
   }
+  const nearbyOffers = getOffersNearby(offers, currentOffer);
 
   const {
     images,
@@ -29,7 +35,7 @@ function Room(): JSX.Element {
     goods,
     host,
     description,
-  } = offer;
+  } = currentOffer;
 
   return (
     <div className="page">
@@ -323,16 +329,7 @@ function Room(): JSX.Element {
           <section className="property__map map"></section>
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">
-              Other places in the neighbourhood
-            </h2>
-            <div className="near-places__list places__list">
-              {offers.map((hotelData) => (
-                <RoomCard hotelData={hotelData} key={hotelData.id} />
-              ))}
-            </div>
-          </section>
+          <RoomCardsContainer offers={nearbyOffers} />
         </div>
       </main>
     </div>
