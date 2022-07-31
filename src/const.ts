@@ -29,7 +29,7 @@ export const IconData = {
 } as const;
 
 export const FIRST_ELEMENT_INDEX = 0;
-export const MAX_OFFERS_NEARBY_COUNT = 3;
+export const OFFERS_NEARBY_RANGE = [1, 4];
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const DEFAULT_CITY = 'Paris';
 

@@ -1,5 +1,5 @@
 import { Offer, OfferServer } from './types/offer';
-import { MAX_OFFERS_NEARBY_COUNT } from './const';
+import { OFFERS_NEARBY_RANGE } from './const';
 
 export const adaptOfferToClient = (offer: OfferServer): Offer => {
   const adaptedOffer = Object.assign({}, offer, {
@@ -31,14 +31,20 @@ export const getOfferById = (
 ): Offer | undefined =>
   offers.filter((offer) => Number(offerId) === offer.id)[0];
 
-export const getOffersNearby = (
-  allOffers: Offer[],
-  currentOffer: Offer
-): Offer[] =>
-  allOffers
-    .filter(
-      (offer) =>
-        offer.city.name === currentOffer.city.name &&
-        offer.id !== currentOffer.id
-    )
-    .slice(0, MAX_OFFERS_NEARBY_COUNT);
+
+export const getOffersNearby = (offers: Offer[], currentOffer: Offer) => {
+  const currentOfferCoordinateSum =
+    currentOffer.location.latitude + currentOffer.location.longitude;
+  return offers
+    .sort((offerA, offerB) => {
+      const offerACoordinateSum =
+        offerA.location.latitude + offerA.location.longitude;
+      const offerBCoordinateSum =
+        offerB.location.latitude + offerB.location.longitude;
+      return (
+        Math.abs(offerACoordinateSum - currentOfferCoordinateSum) -
+        Math.abs(offerBCoordinateSum - currentOfferCoordinateSum)
+      );
+    })
+    .slice(...OFFERS_NEARBY_RANGE);
+};

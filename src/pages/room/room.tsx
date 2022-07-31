@@ -4,6 +4,7 @@ import { Offers } from './../../types/offer';
 import { getOffers } from './../../store/app-data/selector';
 import RoomImage from '../../components/room-image/room-image';
 import RoomCardsContainer from '../../components/cards/room-cards-container/room-cards-container';
+import RoomPageMap from '../../components/maps/room-page-map/room-page-map';
 import NotFound from '../not-found/not-found';
 import { checkPluralPostfix, getOfferById, getOffersNearby } from '../../util';
 import { StarRating } from '../../const';
@@ -23,6 +24,7 @@ function Room(): JSX.Element {
     return <NotFound />;
   }
   const nearbyOffers = getOffersNearby(offers, currentOffer);
+  const nearbyOffersWithCurrent = [...nearbyOffers, currentOffer];
 
   const {
     images,
@@ -325,8 +327,8 @@ function Room(): JSX.Element {
                 </form>
               </section>
             </div>
+            <RoomPageMap filteredOffers={nearbyOffersWithCurrent} currentActiveCardId={+offerId}/>
           </div>
-          <section className="property__map map"></section>
         </section>
         <div className="container">
           <RoomCardsContainer offers={nearbyOffers} />
