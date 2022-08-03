@@ -3,10 +3,16 @@ export enum AppRoute {
   SignIn = '/login',
   Room = '/offer/:offerId',
   Favorites = '/favorites',
+  NotFound = '*',
 }
 
 export enum ApiRoute {
-  Offers = '/hotels',
+  Offers = '/hotels/',
+  Comments = '/comments/',
+}
+
+export enum StatusCode {
+  NotFound = 404,
 }
 
 export enum StarRating {

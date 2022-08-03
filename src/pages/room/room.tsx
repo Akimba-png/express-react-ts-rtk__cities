@@ -1,13 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Offers } from './../../types/offer';
-import { getOffers } from './../../store/app-data/selector';
+import { useAssync } from './../../hooks/use-assync';
 import RoomImage from '../../components/room-image/room-image';
 import RoomCardsContainer from '../../components/cards/room-cards-container/room-cards-container';
 import RoomPageMap from '../../components/maps/room-page-map/room-page-map';
-import NotFound from '../not-found/not-found';
-import { checkPluralPostfix, getOfferById, getOffersNearby } from '../../util';
+import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';
+
 
 type Param = {
   offerId: string;
@@ -16,15 +14,13 @@ type Param = {
 function Room(): JSX.Element {
 
   const { offerId } = useParams() as Param;
-  const offers: Offers = useSelector(getOffers);
+  const roomData = useAssync(offerId);
 
-  const currentOffer = getOfferById(offerId, offers);
-
-  if (!currentOffer) {
-    return <NotFound />;
+  if (!roomData.length) {
+    return <h1>Loading</h1>;
   }
-  const nearbyOffers = getOffersNearby(offers, currentOffer);
-  const nearbyOffersWithCurrent = [...nearbyOffers, currentOffer];
+  const [currentOffer, nearbyOffers] = roomData;
+  const nearbyOffersWithCurrent = [currentOffer, ...nearbyOffers];
 
   const {
     images,

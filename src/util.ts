@@ -1,5 +1,5 @@
 import { Offer, OfferServer } from './types/offer';
-import { OFFERS_NEARBY_RANGE } from './const';
+import { Comment, CommentServer } from './types/comment';
 
 export const adaptOfferToClient = (offer: OfferServer): Offer => {
   const adaptedOffer = Object.assign({}, offer, {
@@ -22,29 +22,18 @@ export const adaptOfferToClient = (offer: OfferServer): Offer => {
   return adaptedOffer as Offer;
 };
 
+export const adaptCommentToClient = (comment: CommentServer): Comment => {
+  const adaptedComment = Object.assign({}, comment, {
+    user: Object.assign({}, comment.user, {
+      isPro: comment.user.is_pro,
+      avatarUrl: comment.user.avatar_url,
+    }),
+  });
+  delete adaptedComment.user.avatar_url;
+  delete adaptedComment.user.is_pro;
+  return adaptedComment as Comment;
+};
+
 export const checkPluralPostfix = (value: number, text: string) =>
   value > 1 ? `${text}s` : text;
 
-export const getOfferById = (
-  offerId: string,
-  offers: Offer[]
-): Offer | undefined =>
-  offers.filter((offer) => Number(offerId) === offer.id)[0];
-
-
-export const getOffersNearby = (offers: Offer[], currentOffer: Offer) => {
-  const currentOfferCoordinateSum =
-    currentOffer.location.latitude + currentOffer.location.longitude;
-  return offers
-    .sort((offerA, offerB) => {
-      const offerACoordinateSum =
-        offerA.location.latitude + offerA.location.longitude;
-      const offerBCoordinateSum =
-        offerB.location.latitude + offerB.location.longitude;
-      return (
-        Math.abs(offerACoordinateSum - currentOfferCoordinateSum) -
-        Math.abs(offerBCoordinateSum - currentOfferCoordinateSum)
-      );
-    })
-    .slice(...OFFERS_NEARBY_RANGE);
-};
