@@ -1,22 +1,26 @@
-import RoomCard from '../../components/cards/room-card/room-card';
-import NotFound from '../not-found/not-found';
 import { useParams } from 'react-router-dom';
-import { offers } from '../../mock';
+import { useAssync } from './../../hooks/use-assync';
 import RoomImage from '../../components/room-image/room-image';
+import RoomCardsContainer from '../../components/cards/room-cards-container/room-cards-container';
+import RoomPageMap from '../../components/maps/room-page-map/room-page-map';
+import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';
-import { checkPluralPostfix, getOfferById } from '../../util';
+
 
 type Param = {
   offerId: string;
 };
 
 function Room(): JSX.Element {
-  const { offerId } = useParams() as Param;
-  const offer = getOfferById(offerId, offers);
 
-  if (!offer) {
-    return <NotFound />;
+  const { offerId } = useParams() as Param;
+  const roomData = useAssync(offerId);
+
+  if (!roomData.length) {
+    return <h1>Loading</h1>;
   }
+  const [currentOffer, nearbyOffers] = roomData;
+  const nearbyOffersWithCurrent = [currentOffer, ...nearbyOffers];
 
   const {
     images,
@@ -29,7 +33,7 @@ function Room(): JSX.Element {
     goods,
     host,
     description,
-  } = offer;
+  } = currentOffer;
 
   return (
     <div className="page">
@@ -319,20 +323,11 @@ function Room(): JSX.Element {
                 </form>
               </section>
             </div>
+            <RoomPageMap filteredOffers={nearbyOffersWithCurrent} currentActiveCardId={+offerId}/>
           </div>
-          <section className="property__map map"></section>
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">
-              Other places in the neighbourhood
-            </h2>
-            <div className="near-places__list places__list">
-              {offers.map((hotelData) => (
-                <RoomCard hotelData={hotelData} key={hotelData.id} />
-              ))}
-            </div>
-          </section>
+          <RoomCardsContainer offers={nearbyOffers} />
         </div>
       </main>
     </div>
