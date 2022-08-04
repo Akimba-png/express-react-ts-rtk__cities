@@ -24,6 +24,21 @@ export enum StarRating {
   '100%',
 }
 
+export enum Month {
+ 'January',
+ 'February',
+ 'March',
+ 'April',
+ 'May',
+ 'June',
+ 'July',
+ 'August',
+ 'September',
+ 'October',
+ 'November',
+ 'December',
+}
+
 export enum IconUrl {
   Default = '/img/pin.svg',
   Active = '/img/pin-active.svg',
@@ -35,6 +50,8 @@ export const IconData = {
 } as const;
 
 export const FIRST_ELEMENT_INDEX = 0;
+export const COMMENT_DATE_LENGTH = 10;
+export const MAX_COMMENTS_COUNT = 9;
 export const OFFERS_NEARBY_RANGE = [1, 4];
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const DEFAULT_CITY = 'Paris';

@@ -1,5 +1,6 @@
 import { Offer, OfferServer } from './types/offer';
 import { Comment, CommentServer } from './types/comment';
+import { Month, COMMENT_DATE_LENGTH, MAX_COMMENTS_COUNT } from './const';
 
 export const adaptOfferToClient = (offer: OfferServer): Offer => {
   const adaptedOffer = Object.assign({}, offer, {
@@ -37,3 +38,16 @@ export const adaptCommentToClient = (comment: CommentServer): Comment => {
 export const checkPluralPostfix = (value: number, text: string) =>
   value > 1 ? `${text}s` : text;
 
+export const getFormattedDate = (date: Date): string =>
+  `${Month[date.getMonth()]} ${date.getFullYear()}`;
+
+export const getDateTime = (date: Date): string =>
+  date.toISOString().slice(0, COMMENT_DATE_LENGTH);
+
+export const getSortedReviewsByDate = (reviewsData: Comment[]): Comment[] =>
+  reviewsData
+    .slice()
+    .sort(
+      (reviewA, reviewB) => Date.parse(reviewA.date) - Date.parse(reviewB.date)
+    )
+    .slice(0, MAX_COMMENTS_COUNT);
