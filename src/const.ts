@@ -52,6 +52,7 @@ export const IconData = {
 export const FIRST_ELEMENT_INDEX = 0;
 export const COMMENT_DATE_LENGTH = 10;
 export const MAX_COMMENTS_COUNT = 9;
+export const MAX_RATING_VALUE = 5;
 export const OFFERS_NEARBY_RANGE = [1, 4];
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const DEFAULT_CITY = 'Paris';
@@ -61,4 +62,17 @@ export enum SortingOptions {
   LowPrice = 'Price: low to high',
   HighPrice = 'Price: high to low',
   TopRated = 'Top rated first',
+}
+
+export enum starRatingDescription{
+  Perfect = 'perfect',
+  Good = 'good',
+  NotBad = 'not bad',
+  Badly = 'badly',
+  Terribly = 'terribly',
+}
+
+export enum CommentLength {
+  Min = 50,
+  Max = 300,
 }
