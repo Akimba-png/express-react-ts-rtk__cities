@@ -1,9 +1,9 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent } from 'react';
 
 type StarInputProps = {
   rating: number;
   title: string;
-  onInputClick: Dispatch<SetStateAction<string | null>>;
+  onInputClick: (evt: ChangeEvent<HTMLInputElement>) => void;
 };
 
 function StarInput({
@@ -14,9 +14,7 @@ function StarInput({
   return (
     <>
       <input
-        onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-          onInputClick(evt.target.value);
-        }}
+        onChange={onInputClick}
         className="form__rating-input visually-hidden"
         name="rating"
         value={rating}

@@ -1,6 +1,11 @@
 import { Offer, OfferServer } from './types/offer';
 import { Comment, CommentServer } from './types/comment';
-import { Month, COMMENT_DATE_LENGTH, MAX_COMMENTS_COUNT } from './const';
+import {
+  SuffixEnding,
+  Month,
+  COMMENT_DATE_LENGTH,
+  MAX_COMMENTS_COUNT,
+} from './const';
 
 export const adaptOfferToClient = (offer: OfferServer): Offer => {
   const adaptedOffer = Object.assign({}, offer, {
@@ -37,6 +42,16 @@ export const adaptCommentToClient = (comment: CommentServer): Comment => {
 
 export const checkPluralPostfix = (value: number, text: string) =>
   value > 1 ? `${text}s` : text;
+
+export const checkRuPluralPostfix = (value: number, text: string) => {
+  if (value === SuffixEnding.Single) {
+    return text;
+  }
+  if (value > SuffixEnding.Single && value < SuffixEnding.Plural) {
+    return `${text}а`;
+  }
+  return `${text}ов`;
+};
 
 export const getFormattedDate = (date: Date): string =>
   `${Month[date.getMonth()]} ${date.getFullYear()}`;

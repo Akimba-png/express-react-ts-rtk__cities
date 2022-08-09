@@ -1,22 +1,29 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useInput, Validator } from '../../../hooks/useInput';
 import StarInput from './../star-input/star-input';
-import { MAX_RATING_VALUE, starRatingDescription, CommentLength } from '../../../const';
+import {
+  MAX_RATING_VALUE,
+  starRatingDescription,
+  ValidateOption,
+} from '../../../const';
+import ValidatorMessage from '../../validator-message/validator-message';
+
+const commentValidator: Validator = {
+  [ValidateOption.MinLength]: 3,
+  [ValidateOption.MaxLength]: 5,
+};
+
+const ratingValidator: Validator = {
+  [ValidateOption.NotEmpty]: true,
+};
+
+const commentValidatorStyle = {
+  position: 'absolute',
+  top: '-12px',
+};
 
 function ReviewForm(): JSX.Element {
-  const [starRating, setStarRating] = useState<string | null>(null);
-  const [textAreaValue, setTextAreaValue] = useState<string>('');
-  const [validateStatus, setValidateStatus] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (starRating && textAreaValue.length >= CommentLength.Min && textAreaValue.length <= CommentLength.Max) {
-      setValidateStatus(true);
-    } else {
-      setValidateStatus(false);
-    }
-  }, [starRating, textAreaValue]);
-
-  const handleTextareaChange = (evt: ChangeEvent<HTMLTextAreaElement>) =>
-    setTextAreaValue(evt.target.value);
+  const commentControl = useInput('', commentValidator);
+  const ratingControl = useInput('', ratingValidator);
 
   return (
     <form className="reviews__form form" action="#" method="post">
@@ -32,20 +39,34 @@ function ReviewForm(): JSX.Element {
               rating={index}
               title={starDescription}
               key={keyValue}
-              onInputClick={setStarRating}
+              onInputClick={ratingControl.handleInputChange}
             />
           );
         })}
       </div>
       <textarea
-        onChange={handleTextareaChange}
+        onBlur={commentControl.handleBlurredStatus}
+        onChange={commentControl.handleInputChange}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
+        value={commentControl.inputValue}
       >
       </textarea>
-      <div className="reviews__button-wrapper">
+      <div className="reviews__button-wrapper" style={{ position: 'relative' }}>
+        {commentControl.minLengthError && commentControl.isBlurred && (
+          <ValidatorMessage
+            messageText={commentControl.minLengthError}
+            extraStyle={commentValidatorStyle}
+          />
+        )}
+        {commentControl.maxLengthError && commentControl.isBlurred && (
+          <ValidatorMessage
+            messageText={commentControl.maxLengthError}
+            extraStyle={commentValidatorStyle}
+          />
+        )}
         <p className="reviews__help">
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe your stay
@@ -54,7 +75,9 @@ function ReviewForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!validateStatus}
+          disabled={
+            !(commentControl.isControlValid && ratingControl.isControlValid)
+          }
         >
           Submit
         </button>

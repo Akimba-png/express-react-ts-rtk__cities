@@ -56,6 +56,7 @@ export const MAX_RATING_VALUE = 5;
 export const OFFERS_NEARBY_RANGE = [1, 4];
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const DEFAULT_CITY = 'Paris';
+export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
 
 export enum SortingOptions {
   Popular = 'Popular',
@@ -75,4 +76,16 @@ export enum starRatingDescription{
 export enum CommentLength {
   Min = 50,
   Max = 300,
+}
+
+export enum ValidateOption {
+  MaxLength = 'maxLength',
+  MinLength = 'minLength',
+  NotEmpty = 'notEmpty',
+}
+
+
+export enum SuffixEnding {
+  Single = 1,
+  Plural = 5,
 }
