@@ -1,15 +1,21 @@
 import { useInput, Validator } from '../../../hooks/useInput';
 import StarInput from './../star-input/star-input';
 import {
+  ApiRoute,
+  CommentLength,
   MAX_RATING_VALUE,
   starRatingDescription,
   ValidateOption,
 } from '../../../const';
 import ValidatorMessage from '../../validator-message/validator-message';
 
+import { api } from '../../..';
+import { useParams } from 'react-router-dom';
+import { MouseEvent } from 'react';
+
 const commentValidator: Validator = {
-  [ValidateOption.MinLength]: 3,
-  [ValidateOption.MaxLength]: 5,
+  [ValidateOption.MinLength]: CommentLength.Min,
+  [ValidateOption.MaxLength]: CommentLength.Max,
 };
 
 const ratingValidator: Validator = {
@@ -22,8 +28,19 @@ const commentValidatorStyle = {
 };
 
 function ReviewForm(): JSX.Element {
+  const offerId = useParams().offerId;
   const commentControl = useInput('', commentValidator);
   const ratingControl = useInput('', ratingValidator);
+
+  const handleSubmitForm = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    const dataToSend = JSON.stringify({
+      comment: commentControl.inputValue,
+      rating: ratingControl.inputValue,
+    });
+    api.post(`${ApiRoute.Comments}${offerId}`, dataToSend).then((data) => console.log(data));
+
+  };
 
   return (
     <form className="reviews__form form" action="#" method="post">
@@ -73,6 +90,7 @@ function ReviewForm(): JSX.Element {
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
+        onClick={handleSubmitForm}
           className="reviews__submit form__submit button"
           type="submit"
           disabled={
