@@ -82,6 +82,7 @@ export enum ValidateOption {
   MaxLength = 'maxLength',
   MinLength = 'minLength',
   NotEmpty = 'notEmpty',
+  RegExp = 'regExp',
 }
 
 
@@ -89,3 +90,14 @@ export enum SuffixEnding {
   Single = 1,
   Plural = 5,
 }
+
+export enum SignInInvalidText {
+  Login = 'корректный формат: example@example.ru',
+  Password = 'цифро-буквы должны быть здесь:)',
+}
+
+export const signInvalidatorMessageStyle = {
+  position: 'absolute',
+  bottom: '4px',
+  left: '5px',
+};

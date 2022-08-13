@@ -6,13 +6,16 @@ export type Validator = {
   [ValidateOption.MinLength]?: number;
   [ValidateOption.MaxLength]?: number;
   [ValidateOption.NotEmpty]?: boolean;
+  [ValidateOption.RegExp]?: RegExp;
 };
 
 export const useValidate = (value: string, validator: Validator) => {
   const [minLengthError, setMinLengthError] = useState('');
   const [maxLengthError, setMaxLengthError] = useState('');
   const [isEmptyError, setEmptyErrorStatus] = useState(false);
+  const [isRegExpError, setRegExpErrorStatus] = useState(false);
   const [isControlValid, setControlValidStatus] = useState(false);
+
 
   const validateOptions = Object.keys(validator);
   useEffect(() => {
@@ -42,11 +45,17 @@ export const useValidate = (value: string, validator: Validator) => {
             : setMaxLengthError('');
           break;
         }
-        case ValidateOption.NotEmpty:
+        case ValidateOption.NotEmpty: {
           !value.length === validator[validateOption]
             ? setEmptyErrorStatus(true)
             : setEmptyErrorStatus(false);
           break;
+        }
+        case ValidateOption.RegExp: {
+          validator[validateOption]?.test(value) ? setRegExpErrorStatus(false) : setRegExpErrorStatus(true);
+          break;
+        }
+
         default:
           break;
       }
@@ -54,12 +63,12 @@ export const useValidate = (value: string, validator: Validator) => {
   }, [value, validateOptions, validator]);
 
   useEffect(() => {
-    if (!minLengthError && !maxLengthError && !isEmptyError) {
+    if (!minLengthError && !maxLengthError && !isEmptyError && !isRegExpError) {
       setControlValidStatus(true);
     } else {
       setControlValidStatus(false);
     }
-  }, [minLengthError, maxLengthError, isEmptyError]);
+  }, [minLengthError, maxLengthError, isEmptyError, isRegExpError]);
 
   return {
     isControlValid,
