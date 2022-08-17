@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { checkDataLoaded } from '../../store/app-data/selector';
 import Main from '../../pages/main/main';
-import SignIn from '../../pages/signIn/signIn';
+import SignIn from './../../pages/sign-in/sign-in';
 import Room from '../../pages/room/room';
 import Favorites from '../../pages/favorites/favorites';
 import NotFound from '../../pages/not-found/not-found';

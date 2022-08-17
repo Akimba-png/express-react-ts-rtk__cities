@@ -1,3 +1,12 @@
+export const FIRST_ELEMENT_INDEX = 0;
+export const COMMENT_DATE_LENGTH = 10;
+export const MAX_COMMENTS_COUNT = 9;
+export const MAX_RATING_VALUE = 5;
+export const OFFERS_NEARBY_RANGE = [1, 4];
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+export const DEFAULT_CITY = 'Paris';
+export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -9,6 +18,13 @@ export enum AppRoute {
 export enum ApiRoute {
   Offers = '/hotels/',
   Comments = '/comments/',
+  Login = '/login',
+}
+
+export enum AuthorisationStatus {
+  Auth = 'auth',
+  NotAuth = 'notAuth',
+  Unknow = 'unknow',
 }
 
 export enum StatusCode {
@@ -49,15 +65,6 @@ export const IconData = {
   ANCHORE_COORDINATES: [14, 39] as [number, number],
 } as const;
 
-export const FIRST_ELEMENT_INDEX = 0;
-export const COMMENT_DATE_LENGTH = 10;
-export const MAX_COMMENTS_COUNT = 9;
-export const MAX_RATING_VALUE = 5;
-export const OFFERS_NEARBY_RANGE = [1, 4];
-export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
-export const DEFAULT_CITY = 'Paris';
-export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
-
 export enum SortingOptions {
   Popular = 'Popular',
   LowPrice = 'Price: low to high',
@@ -78,17 +85,16 @@ export enum CommentLength {
   Max = 300,
 }
 
+export enum SuffixEnding {
+  Single = 1,
+  Plural = 5,
+}
+
 export enum ValidateOption {
   MaxLength = 'maxLength',
   MinLength = 'minLength',
   NotEmpty = 'notEmpty',
   RegExp = 'regExp',
-}
-
-
-export enum SuffixEnding {
-  Single = 1,
-  Plural = 5,
 }
 
 export enum SignInInvalidText {

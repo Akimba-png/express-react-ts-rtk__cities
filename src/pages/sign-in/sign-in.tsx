@@ -1,12 +1,34 @@
-import { useInput } from './../../hooks/useInput';
+import { MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { useInput } from '../../hooks/useInput';
+import { AppDispatch } from '../../types/thunk';
+import { authorise } from '../../store/assync-action';
 import ValidatorMessage from '../../components/validator-message/validator-message';
-import { SignInInvalidText, signInvalidatorMessageStyle} from './../../const';
+import { SignInInvalidText, signInvalidatorMessageStyle } from '../../const';
+
 
 function SignIn(): JSX.Element {
+
+  const dispatch = useDispatch() as AppDispatch;
+
   const emailControl = useInput('', { regExp: /[a-z]+@[a-z]+\.ru$/ });
   const passwordControl = useInput('', {
     regExp: /(\d+[a-zA-z]+)|([a-zA-z]+\d+)/,
   });
+
+  const handleFormSuccess = () => {
+    emailControl.handleInputStateChange('');
+    passwordControl.handleInputStateChange('');
+  };
+
+  const handleFormSubmit = (evt: MouseEvent) => {
+    evt.preventDefault();
+    const authorisationData = {
+      email: emailControl.inputValue,
+      password: passwordControl.inputValue,
+    };
+    dispatch(authorise(authorisationData, handleFormSuccess));
+  };
 
   return (
     <div className="page page--gray page--login">
@@ -79,6 +101,7 @@ function SignIn(): JSX.Element {
                 )}
               </div>
               <button
+                onClick={handleFormSubmit}
                 className="login__submit form__submit button"
                 type="submit"
                 disabled={

@@ -1,5 +1,6 @@
 import { Offers } from '../types/offer';
 import { createAction } from '@reduxjs/toolkit';
+import { requireAuthorization, requireLogout } from './app-user/app-user';
 
 export enum ActionType {
   SetOffers = 'data/setOffer',
@@ -37,4 +38,8 @@ export type AppActions =
   | ReturnType<typeof setCurrentSortType>
   | ReturnType<typeof setActiveCardId>;
 
-export type Action = AppDataActions | AppActions;
+export type AppUserAction =
+  | ReturnType<typeof requireAuthorization>
+  | ReturnType<typeof requireLogout>;
+
+export type Action = AppDataActions | AppActions | AppUserAction;
