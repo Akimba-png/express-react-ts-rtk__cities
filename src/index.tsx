@@ -6,8 +6,11 @@ import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { createApi } from './store/api';
 import { loadOffers } from './store/assync-action';
+import { redirect } from './store/middlewares/redirect';
 
-export const api = createApi(() => {'logout cb';});
+export const api = createApi(() => {
+  'logout cb';
+});
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -16,7 +19,7 @@ export const store = configureStore({
       thunk: {
         extraArgument: api,
       },
-    }),
+    }).concat(redirect),
 });
 
 store.dispatch(loadOffers());

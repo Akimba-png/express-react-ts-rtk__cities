@@ -16,18 +16,13 @@ function SignIn(): JSX.Element {
     regExp: /(\d+[a-zA-z]+)|([a-zA-z]+\d+)/,
   });
 
-  const handleFormSuccess = () => {
-    emailControl.handleInputStateChange('');
-    passwordControl.handleInputStateChange('');
-  };
-
   const handleFormSubmit = (evt: MouseEvent) => {
     evt.preventDefault();
     const authorisationData = {
       email: emailControl.inputValue,
       password: passwordControl.inputValue,
     };
-    dispatch(authorise(authorisationData, handleFormSuccess));
+    dispatch(authorise(authorisationData));
   };
 
   return (

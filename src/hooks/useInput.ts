@@ -99,16 +99,11 @@ export const useInput = (initialValue: string, validator: Validator) => {
     }, VALIDATOR_MESSAGE_SHOW_TIME);
   };
 
-  const handleInputStateChange = (value: string) => {
-    setInputValue(value);
-  };
-
   return {
     inputValue,
     isBlurred,
     isControlValid,
     handleInputChange,
-    handleInputStateChange,
     handleBlurredStatus,
     minLengthError,
     maxLengthError,
