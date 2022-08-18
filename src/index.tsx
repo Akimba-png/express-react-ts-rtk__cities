@@ -4,7 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './store/root-reducer';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { createApi } from './store/api';
+import { createApi } from './services/api';
 import { loadOffers } from './store/assync-action';
 import { redirect } from './store/middlewares/redirect';
 import { requireAuthorization } from './store/app-user/app-user';

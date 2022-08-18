@@ -5,20 +5,29 @@ import axios, {
   AxiosRequestConfig,
 } from 'axios';
 
+import { AUTHORISATION_TOKEN, getToken } from './token';
+
 const BASE_URL = 'https://8.react.pages.academy/six-cities';
 const REQUEST_TIMEOUT = 5000;
 const UNAUTHORIZED_STATUS_CODE = 401;
 
-const token = localStorage.getItem('X-Token') ?? '';
+const token = getToken();
 
 export const createApi = (onUnauthorized: () => void): AxiosInstance => {
   const api = axios.create({
     baseURL: BASE_URL,
     timeout: REQUEST_TIMEOUT,
     headers: {
-      'X-Token': token,
+      [AUTHORISATION_TOKEN]: token,
     },
   });
+
+  const onSend = (config: AxiosRequestConfig) => {
+    if (!config.headers[AUTHORISATION_TOKEN]) {
+      config.headers[AUTHORISATION_TOKEN] = getToken();
+    }
+    return config;
+  };
 
   const onSuccess = (response: AxiosResponse) => response;
 
@@ -27,13 +36,6 @@ export const createApi = (onUnauthorized: () => void): AxiosInstance => {
       return onUnauthorized();
     }
     return Promise.reject(error);
-  };
-
-  const onSend = (config: AxiosRequestConfig) => {
-    if (!config.headers['X-Token']) {
-      config.headers['X-Token'] = localStorage.getItem('X-Token') ?? '';
-    }
-    return config;
   };
 
   api.interceptors.request.use(onSend);
