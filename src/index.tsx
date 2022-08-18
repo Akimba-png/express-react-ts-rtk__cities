@@ -7,9 +7,12 @@ import App from './components/app/app';
 import { createApi } from './store/api';
 import { loadOffers } from './store/assync-action';
 import { redirect } from './store/middlewares/redirect';
+import { requireAuthorization } from './store/app-user/app-user';
+import { AuthorisationStatus } from './const';
+
 
 export const api = createApi(() => {
-  'logout cb';
+  store.dispatch(requireAuthorization(AuthorisationStatus.NotAuth));
 });
 
 export const store = configureStore({

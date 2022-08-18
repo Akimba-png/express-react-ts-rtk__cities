@@ -7,11 +7,11 @@ import { useSelector } from 'react-redux';
 import { history } from './../../store/history';
 import { checkDataLoaded } from '../../store/app-data/selector';
 import Main from '../../pages/main/main';
-import SignIn from './../../pages/sign-in/sign-in';
 import Room from '../../pages/room/room';
 import Favorites from '../../pages/favorites/favorites';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import SignIn from './../../pages/sign-in/sign-in';
 import { AppRoute } from '../../const';
 
 
