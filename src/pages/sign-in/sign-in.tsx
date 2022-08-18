@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
@@ -14,9 +14,12 @@ function SignIn(): JSX.Element {
   const navigate = useNavigate();
   const authorisationStatus = useSelector(getAuthoriseStatus);
 
-  if (authorisationStatus === AuthorisationStatus.Auth) {
-    navigate(AppRoute.Main);
-  }
+
+  useEffect(() => {
+    if (authorisationStatus === AuthorisationStatus.Auth) {
+      navigate(AppRoute.Main);
+    }
+  }, [authorisationStatus, navigate]);
 
   const dispatch = useDispatch() as AppDispatch;
 
