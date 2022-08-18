@@ -1,6 +1,7 @@
 import { Offers } from '../types/offer';
 import { createAction } from '@reduxjs/toolkit';
 import { requireAuthorization, requireLogout } from './app-user/app-user';
+import { AppRoute } from '../const';
 
 export enum ActionType {
   SetOffers = 'data/setOffer',
@@ -8,6 +9,7 @@ export enum ActionType {
   SetCurrentSortType = 'app/setCurrentSortType',
   SetActiveCardId = 'app/setActiveCardId',
   SetDataLoaded = 'data/setDataLoaded',
+  RedirectToPage = 'app/redirectToPage',
 }
 
 export const setOffers = (
@@ -29,6 +31,8 @@ export const setActiveCardId = createAction<number | null>(
   ActionType.SetActiveCardId
 );
 
+export const redirectToPage = createAction<AppRoute>(ActionType.RedirectToPage);
+
 export type AppDataActions =
   | ReturnType<typeof setOffers>
   | ReturnType<typeof setDataLoaded>;
@@ -36,7 +40,8 @@ export type AppDataActions =
 export type AppActions =
   | ReturnType<typeof setActiveFilter>
   | ReturnType<typeof setCurrentSortType>
-  | ReturnType<typeof setActiveCardId>;
+  | ReturnType<typeof setActiveCardId>
+  | ReturnType<typeof redirectToPage>;
 
 export type AppUserAction =
   | ReturnType<typeof requireAuthorization>

@@ -1,11 +1,11 @@
 import { ThunkCreatorResult } from '../types/thunk';
 import { Offers, OfferServer } from './../types/offer';
 import { AuthorisationData } from '../types/authorisation';
-import { requireAuthorization, requireLogout } from './app-user/app-user';
-import { setDataLoaded, setOffers } from './action';
+import { requireAuthorization } from './app-user/app-user';
+import { redirectToPage, setDataLoaded, setOffers } from './action';
 import { setToken } from '../services/token';
 import { adaptOfferToClient } from '../util';
-import { ApiRoute, AuthorisationStatus } from './../const';
+import { ApiRoute, AppRoute, AuthorisationStatus } from './../const';
 
 
 export const loadOffers =
@@ -22,5 +22,5 @@ export const authorise = (authorisationData: AuthorisationData): ThunkCreatorRes
   api.post(ApiRoute.Login, authorisationData)
     .then((response) => setToken(response.data.token))
     .then(() => dispatch(requireAuthorization(AuthorisationStatus.Auth)))
-    .then(() => dispatch(requireLogout()));
+    .then(() => dispatch(redirectToPage(AppRoute.Main)));
 };
