@@ -5,7 +5,7 @@ import { rootReducer } from './store/root-reducer';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { createApi } from './services/api';
-import { loadOffers } from './store/assync-action';
+import { loadOffers, checkAuthorization } from './store/assync-action';
 import { redirect } from './store/middlewares/redirect';
 import { requireAuthorization } from './store/app-user/app-user';
 import { AuthorisationStatus } from './const';
@@ -26,6 +26,7 @@ export const store = configureStore({
 });
 
 store.dispatch(loadOffers());
+store.dispatch(checkAuthorization());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

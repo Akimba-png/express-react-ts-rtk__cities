@@ -3,6 +3,7 @@ import { AuthorisationStatus } from './../../const';
 
 const initialState = {
   isAuthorized: AuthorisationStatus.Unknow,
+  userEmail: '',
 };
 
 const slice = createSlice({
@@ -14,10 +15,13 @@ const slice = createSlice({
     },
     requireLogout(state) {
       state.isAuthorized = AuthorisationStatus.NotAuth;
+    },
+    setUserEmail(state, action: PayloadAction<string>) {
+      state.userEmail = action.payload;
     }
   },
 });
 
 const appUser = slice.reducer;
-const { requireAuthorization, requireLogout } = slice.actions;
-export {requireAuthorization, requireLogout, appUser};
+const { requireAuthorization, requireLogout, setUserEmail } = slice.actions;
+export { requireAuthorization, requireLogout, setUserEmail, appUser };

@@ -33,7 +33,7 @@ export const createApi = (onUnauthorized: () => void): AxiosInstance => {
 
   const onFail = (error: AxiosError) => {
     if (error.response?.status === UNAUTHORIZED_STATUS_CODE) {
-      return onUnauthorized();
+      onUnauthorized();
     }
     return Promise.reject(error);
   };
