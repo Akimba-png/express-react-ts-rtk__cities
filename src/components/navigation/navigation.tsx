@@ -1,11 +1,26 @@
+import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getAuthoriseStatus } from './../../store/app-user/selector';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from '../../types/thunk';
+import { logout } from './../../store/assync-action';
 import { AppRoute, AuthorisationStatus } from '../../const';
+import {
+  getAuthoriseStatus,
+  getUserEmail,
+} from './../../store/app-user/selector';
+
 
 function Navigation(): JSX.Element {
+  const dispatch = useDispatch() as AppDispatch;
   const authStatus = useSelector(getAuthoriseStatus);
+  const userEmail = useSelector(getUserEmail);
+
   const isAuthorized = authStatus === AuthorisationStatus.Auth;
+
+  const handleLogoutClick = (evt: MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    dispatch(logout());
+  };
 
   return (
     <nav className="header__nav">
@@ -19,12 +34,16 @@ function Navigation(): JSX.Element {
               >
                 <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                 <span className="header__user-name user__name">
-                  Oliver.conner@gmail.com
+                  {userEmail}
                 </span>
               </a>
             </li>
             <li className="header__nav-item">
-              <a className="header__nav-link" href="#">
+              <a
+                onClick={handleLogoutClick}
+                className="header__nav-link"
+                href="/#"
+              >
                 <span className="header__signout">Sign out</span>
               </a>
             </li>
