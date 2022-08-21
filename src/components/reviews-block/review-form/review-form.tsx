@@ -38,7 +38,7 @@ function ReviewForm(): JSX.Element {
       comment: commentControl.inputValue,
       rating: ratingControl.inputValue,
     });
-    api.post(`${ApiRoute.Comments}${offerId}`, dataToSend).then((data) => console.log(data));
+    api.post(`${ApiRoute.Comments}${offerId}`, dataToSend);
 
   };
 
@@ -90,7 +90,7 @@ function ReviewForm(): JSX.Element {
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
-        onClick={handleSubmitForm}
+          onClick={handleSubmitForm}
           className="reviews__submit form__submit button"
           type="submit"
           disabled={
