@@ -28,15 +28,15 @@ function Navigation(): JSX.Element {
         {isAuthorized && (
           <>
             <li className="header__nav-item user">
-              <a
+              <Link
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                to={AppRoute.Favorites}
               >
                 <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                 <span className="header__user-name user__name">
                   {userEmail}
                 </span>
-              </a>
+              </Link>
             </li>
             <li className="header__nav-item">
               <a
