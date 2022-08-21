@@ -3,6 +3,7 @@ import Sorting from '../../components/sorting/sorting';
 import MainCardsContainer from '../../components/cards/main-cards-container/main-cards-container';
 import MainPageMap from '../../components/maps/main-page-map/main-page-map';
 import MainPageTitle from '../../components/main-page-title/main-page-title';
+import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 
 function Main(): JSX.Element {
@@ -12,15 +13,7 @@ function Main(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
-                <img
-                  className="header__logo"
-                  src="img/logo.svg"
-                  alt="6 cities logo"
-                  width="81"
-                  height="41"
-                />
-              </a>
+              <Logo />
             </div>
             <Navigation />
           </div>

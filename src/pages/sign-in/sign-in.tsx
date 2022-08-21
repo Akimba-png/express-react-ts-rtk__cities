@@ -1,9 +1,10 @@
 import { MouseEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import { AppDispatch } from '../../types/thunk';
 import { authorise } from '../../store/assync-action';
+import Logo from '../../components/logo/logo';
 import ValidatorMessage from '../../components/validator-message/validator-message';
 import { AppRoute, AuthorisationStatus, SignInInvalidText, signInvalidatorMessageStyle } from '../../const';
 import { getAuthoriseStatus } from '../../store/app-user/selector';
@@ -43,15 +44,7 @@ function SignIn(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Link className="header__logo-link" to={AppRoute.Main}>
-                <img
-                  className="header__logo"
-                  src="img/logo.svg"
-                  alt="6 cities logo"
-                  width="81"
-                  height="41"
-                />
-              </Link>
+              <Logo />
             </div>
           </div>
         </div>
