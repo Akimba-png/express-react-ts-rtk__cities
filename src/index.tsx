@@ -4,10 +4,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './store/root-reducer';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { createApi } from './store/api';
-import { loadOffers } from './store/assync-action';
+import { createApi } from './services/api';
+import { loadOffers, checkAuthorization } from './store/assync-action';
+import { redirect } from './store/middlewares/redirect';
+import { requireAuthorization } from './store/app-user/app-user';
+import { AuthorisationStatus } from './const';
 
-export const api = createApi(() => {'logout cb';});
+
+export const api = createApi(() => {
+  store.dispatch(requireAuthorization(AuthorisationStatus.NotAuth));
+});
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -16,10 +22,11 @@ export const store = configureStore({
       thunk: {
         extraArgument: api,
       },
-    }),
+    }).concat(redirect),
 });
 
 store.dispatch(loadOffers());
+store.dispatch(checkAuthorization());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
