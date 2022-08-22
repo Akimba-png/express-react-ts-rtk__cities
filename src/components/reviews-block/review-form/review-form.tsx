@@ -1,4 +1,4 @@
-import { useRef, Dispatch, MouseEvent } from 'react';
+import { Dispatch, MouseEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { Comment } from '../../../types/comment';
 import { useInput, Validator } from '../../../hooks/useInput';
@@ -36,7 +36,6 @@ type ReviewFormProps = {
 function ReviewForm({ onFormSubmit }: ReviewFormProps): JSX.Element {
 
   const offerId = useParams().offerId;
-  const formRef = useRef<HTMLFormElement | null>(null);
   const commentControl = useInput('', commentValidator);
   const ratingControl = useInput('', ratingValidator);
 
@@ -55,12 +54,11 @@ function ReviewForm({ onFormSubmit }: ReviewFormProps): JSX.Element {
         onFormSubmit(data);
         commentControl.setInputValue('');
         ratingControl.setInputValue('');
-        formRef.current!.reset();
       });
   };
 
   return (
-    <form ref={formRef} className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -71,6 +69,7 @@ function ReviewForm({ onFormSubmit }: ReviewFormProps): JSX.Element {
           return (
             <StarInput
               rating={index}
+              currentValue={ratingControl.inputValue}
               title={starDescription}
               key={keyValue}
               onInputClick={ratingControl.handleInputChange}

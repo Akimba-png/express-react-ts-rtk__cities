@@ -3,12 +3,14 @@ import { ChangeEvent } from 'react';
 type StarInputProps = {
   rating: number;
   title: string;
+  currentValue: string;
   onInputClick: (evt: ChangeEvent<HTMLInputElement>) => void;
 };
 
 function StarInput({
   rating,
   title,
+  currentValue,
   onInputClick,
 }: StarInputProps): JSX.Element {
   return (
@@ -20,6 +22,7 @@ function StarInput({
         value={rating}
         id={`${rating}-stars`}
         type="radio"
+        checked={rating === Number(currentValue)}
       />
       <label
         htmlFor={`${rating}-stars`}
