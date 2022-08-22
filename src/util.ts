@@ -63,6 +63,6 @@ export const getSortedReviewsByDate = (reviewsData: Comment[]): Comment[] =>
   reviewsData
     .slice()
     .sort(
-      (reviewA, reviewB) => Date.parse(reviewA.date) - Date.parse(reviewB.date)
+      (reviewA, reviewB) => Date.parse(reviewB.date) - Date.parse(reviewA.date)
     )
     .slice(0, MAX_COMMENTS_COUNT);
