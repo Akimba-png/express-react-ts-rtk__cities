@@ -16,7 +16,6 @@ export const useValidate = (value: string, validator: Validator) => {
   const [isRegExpError, setRegExpErrorStatus] = useState(false);
   const [isControlValid, setControlValidStatus] = useState(false);
 
-
   const validateOptions = Object.keys(validator);
   useEffect(() => {
     for (const validateOption of validateOptions) {
@@ -52,7 +51,9 @@ export const useValidate = (value: string, validator: Validator) => {
           break;
         }
         case ValidateOption.RegExp: {
-          validator[validateOption]?.test(value) ? setRegExpErrorStatus(false) : setRegExpErrorStatus(true);
+          validator[validateOption]?.test(value)
+            ? setRegExpErrorStatus(false)
+            : setRegExpErrorStatus(true);
           break;
         }
 
@@ -93,10 +94,12 @@ export const useInput = (initialValue: string, validator: Validator) => {
   };
 
   const handleBlurredStatus = () => {
-    setBlurredStatus(true);
-    setTimeout(() => {
-      setBlurredStatus(false);
-    }, VALIDATOR_MESSAGE_SHOW_TIME);
+    if (inputValue !== '') {
+      setBlurredStatus(true);
+      setTimeout(() => {
+        setBlurredStatus(false);
+      }, VALIDATOR_MESSAGE_SHOW_TIME);
+    }
   };
 
   return {
