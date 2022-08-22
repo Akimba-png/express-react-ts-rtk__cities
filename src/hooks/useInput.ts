@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { checkRuPluralPostfix } from '../util';
-import { ValidateOption, VALIDATOR_MESSAGE_SHOW_TIME } from '../const';
+import { ValidateOption, VALIDATOR_MESSAGE_SHOW_TIME, EMPTY_STRING } from '../const';
 
 export type Validator = {
   [ValidateOption.MinLength]?: number;
@@ -94,7 +94,7 @@ export const useInput = (initialValue: string, validator: Validator) => {
   };
 
   const handleBlurredStatus = () => {
-    if (inputValue !== '') {
+    if (inputValue !== EMPTY_STRING && !isControlValid) {
       setBlurredStatus(true);
       setTimeout(() => {
         setBlurredStatus(false);
