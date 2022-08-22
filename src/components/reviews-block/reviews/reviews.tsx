@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Comment } from './../../../types/comment';
 import { getAuthoriseStatus } from '../../../store/app-user/selector';
@@ -12,8 +13,10 @@ type ReviewsProps = {
 
 function Reviews({ reviewsData }: ReviewsProps): JSX.Element {
 
+  const [comments, setComments] = useState<Comment[]>(reviewsData);
+
   const totalReviewsAmount = reviewsData.length;
-  const sortedReviewsByDate = getSortedReviewsByDate(reviewsData);
+  const sortedReviewsByDate = getSortedReviewsByDate(comments);
 
   const authorisationStatus = useSelector(getAuthoriseStatus);
   const isAuthorized = authorisationStatus === AuthorisationStatus.Auth;
@@ -30,7 +33,7 @@ function Reviews({ reviewsData }: ReviewsProps): JSX.Element {
           return <ReviewsItem reviewItemData={reviewItemData} key={keyValue} />;
         })}
       </ul>
-      {isAuthorized && <ReviewForm />}
+      {isAuthorized && <ReviewForm onFormSubmit={setComments}/>}
     </section>
   );
 }

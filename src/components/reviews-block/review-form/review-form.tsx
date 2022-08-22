@@ -1,5 +1,11 @@
+import { useRef, Dispatch, MouseEvent } from 'react';
+import { useParams } from 'react-router-dom';
+import { Comment } from '../../../types/comment';
 import { useInput, Validator } from '../../../hooks/useInput';
+import { api } from '../../..';
 import StarInput from './../star-input/star-input';
+import ValidatorMessage from '../../validator-message/validator-message';
+import { adaptCommentToClient } from '../../../util';
 import {
   ApiRoute,
   CommentLength,
@@ -7,11 +13,7 @@ import {
   starRatingDescription,
   ValidateOption,
 } from '../../../const';
-import ValidatorMessage from '../../validator-message/validator-message';
 
-import { api } from '../../..';
-import { useParams } from 'react-router-dom';
-import { MouseEvent } from 'react';
 
 const commentValidator: Validator = {
   [ValidateOption.MinLength]: CommentLength.Min,
@@ -27,23 +29,38 @@ const commentValidatorStyle = {
   top: '-12px',
 };
 
-function ReviewForm(): JSX.Element {
+type ReviewFormProps = {
+  onFormSubmit: Dispatch<Comment[]>;
+};
+
+function ReviewForm({ onFormSubmit }: ReviewFormProps): JSX.Element {
+
   const offerId = useParams().offerId;
+  const formRef = useRef<HTMLFormElement | null>(null);
   const commentControl = useInput('', commentValidator);
   const ratingControl = useInput('', ratingValidator);
 
-  const handleSubmitForm = (evt: MouseEvent<HTMLButtonElement>) => {
+  const handleFormSubmit = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
-    const dataToSend = JSON.stringify({
+    const dataToSend = {
       comment: commentControl.inputValue,
       rating: ratingControl.inputValue,
-    });
-    api.post(`${ApiRoute.Comments}${offerId}`, dataToSend);
-
+    };
+    api
+      .post(`${ApiRoute.Comments}${offerId}`, dataToSend)
+      .then((respose) =>
+        respose.data.map((comment: Comment) => adaptCommentToClient(comment))
+      )
+      .then((data) => {
+        onFormSubmit(data);
+        commentControl.setInputValue('');
+        ratingControl.setInputValue('');
+        formRef.current!.reset();
+      });
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form ref={formRef} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -90,7 +107,7 @@ function ReviewForm(): JSX.Element {
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
-          onClick={handleSubmitForm}
+          onClick={handleFormSubmit}
           className="reviews__submit form__submit button"
           type="submit"
           disabled={

@@ -105,6 +105,7 @@ export const useInput = (initialValue: string, validator: Validator) => {
     isControlValid,
     handleInputChange,
     handleBlurredStatus,
+    setInputValue,
     minLengthError,
     maxLengthError,
   };
