@@ -15,7 +15,7 @@ function Reviews({ reviewsData }: ReviewsProps): JSX.Element {
 
   const [comments, setComments] = useState<Comment[]>(reviewsData);
 
-  const totalReviewsAmount = reviewsData.length;
+  const totalReviewsAmount = comments.length;
   const sortedReviewsByDate = getSortedReviewsByDate(comments);
 
   const authorisationStatus = useSelector(getAuthoriseStatus);
