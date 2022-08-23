@@ -1,4 +1,4 @@
-import { Offer, OfferServer } from './types/offer';
+import { Offer, OfferServer, OffersByCity } from './types/offer';
 import { Comment, CommentServer } from './types/comment';
 import {
   SuffixEnding,
@@ -66,3 +66,14 @@ export const getSortedReviewsByDate = (reviewsData: Comment[]): Comment[] =>
       (reviewA, reviewB) => Date.parse(reviewB.date) - Date.parse(reviewA.date)
     )
     .slice(0, MAX_COMMENTS_COUNT);
+
+export const getOffersByCity = (offers: Offer[]) =>
+  offers.reduce((acc: OffersByCity, offer) => {
+    const cityName = offer.city.name;
+    if (acc[cityName]) {
+      acc[cityName].push(offer);
+      return acc;
+    }
+    acc[cityName] = [offer];
+    return acc;
+  }, {});

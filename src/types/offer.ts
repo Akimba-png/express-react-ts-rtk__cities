@@ -61,3 +61,7 @@ export type OfferServer = {
 
 
 export type Offers = Offer[];
+
+export type OffersByCity = {
+  [key: string]: Offers,
+}
