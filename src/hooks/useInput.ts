@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { checkRuPluralPostfix } from '../util';
-import { ValidateOption, VALIDATOR_MESSAGE_SHOW_TIME } from '../const';
+import { ValidateOption, VALIDATOR_MESSAGE_SHOW_TIME, EMPTY_STRING } from '../const';
 
 export type Validator = {
   [ValidateOption.MinLength]?: number;
@@ -15,7 +15,6 @@ export const useValidate = (value: string, validator: Validator) => {
   const [isEmptyError, setEmptyErrorStatus] = useState(false);
   const [isRegExpError, setRegExpErrorStatus] = useState(false);
   const [isControlValid, setControlValidStatus] = useState(false);
-
 
   const validateOptions = Object.keys(validator);
   useEffect(() => {
@@ -52,7 +51,9 @@ export const useValidate = (value: string, validator: Validator) => {
           break;
         }
         case ValidateOption.RegExp: {
-          validator[validateOption]?.test(value) ? setRegExpErrorStatus(false) : setRegExpErrorStatus(true);
+          validator[validateOption]?.test(value)
+            ? setRegExpErrorStatus(false)
+            : setRegExpErrorStatus(true);
           break;
         }
 
@@ -93,10 +94,12 @@ export const useInput = (initialValue: string, validator: Validator) => {
   };
 
   const handleBlurredStatus = () => {
-    setBlurredStatus(true);
-    setTimeout(() => {
-      setBlurredStatus(false);
-    }, VALIDATOR_MESSAGE_SHOW_TIME);
+    if (inputValue !== EMPTY_STRING && !isControlValid) {
+      setBlurredStatus(true);
+      setTimeout(() => {
+        setBlurredStatus(false);
+      }, VALIDATOR_MESSAGE_SHOW_TIME);
+    }
   };
 
   return {
@@ -105,6 +108,7 @@ export const useInput = (initialValue: string, validator: Validator) => {
     isControlValid,
     handleInputChange,
     handleBlurredStatus,
+    setInputValue,
     minLengthError,
     maxLengthError,
   };

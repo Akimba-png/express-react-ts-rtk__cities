@@ -1,15 +1,23 @@
+import { Dispatch, MouseEvent } from 'react';
+import { useParams } from 'react-router-dom';
+import { Comment } from '../../../types/comment';
 import { useInput, Validator } from '../../../hooks/useInput';
+import { api } from '../../..';
 import StarInput from './../star-input/star-input';
+import ValidatorMessage from '../../validator-message/validator-message';
+import { adaptCommentToClient } from '../../../util';
 import {
+  ApiRoute,
+  CommentLength,
   MAX_RATING_VALUE,
   starRatingDescription,
   ValidateOption,
 } from '../../../const';
-import ValidatorMessage from '../../validator-message/validator-message';
+
 
 const commentValidator: Validator = {
-  [ValidateOption.MinLength]: 3,
-  [ValidateOption.MaxLength]: 5,
+  [ValidateOption.MinLength]: CommentLength.Min,
+  [ValidateOption.MaxLength]: CommentLength.Max,
 };
 
 const ratingValidator: Validator = {
@@ -21,9 +29,33 @@ const commentValidatorStyle = {
   top: '-12px',
 };
 
-function ReviewForm(): JSX.Element {
+type ReviewFormProps = {
+  onFormSubmit: Dispatch<Comment[]>;
+};
+
+function ReviewForm({ onFormSubmit }: ReviewFormProps): JSX.Element {
+
+  const offerId = useParams().offerId;
   const commentControl = useInput('', commentValidator);
   const ratingControl = useInput('', ratingValidator);
+
+  const handleFormSubmit = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    const dataToSend = {
+      comment: commentControl.inputValue,
+      rating: ratingControl.inputValue,
+    };
+    api
+      .post(`${ApiRoute.Comments}${offerId}`, dataToSend)
+      .then((respose) =>
+        respose.data.map((comment: Comment) => adaptCommentToClient(comment))
+      )
+      .then((data) => {
+        onFormSubmit(data);
+        commentControl.setInputValue('');
+        ratingControl.setInputValue('');
+      });
+  };
 
   return (
     <form className="reviews__form form" action="#" method="post">
@@ -37,6 +69,7 @@ function ReviewForm(): JSX.Element {
           return (
             <StarInput
               rating={index}
+              currentValue={ratingControl.inputValue}
               title={starDescription}
               key={keyValue}
               onInputClick={ratingControl.handleInputChange}
@@ -73,6 +106,7 @@ function ReviewForm(): JSX.Element {
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
+          onClick={handleFormSubmit}
           className="reviews__submit form__submit button"
           type="submit"
           disabled={

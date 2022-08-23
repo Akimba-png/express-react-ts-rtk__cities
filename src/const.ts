@@ -6,6 +6,7 @@ export const OFFERS_NEARBY_RANGE = [1, 4];
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 export const DEFAULT_CITY = 'Paris';
 export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
+export const EMPTY_STRING = '';
 
 export enum AppRoute {
   Main = '/',

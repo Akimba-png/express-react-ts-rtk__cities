@@ -1,15 +1,25 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Comment } from './../../../types/comment';
+import { getAuthoriseStatus } from '../../../store/app-user/selector';
 import ReviewForm from '../review-form/review-form';
 import ReviewsItem from '../reviews-item/reviews-item';
-import { Comment } from './../../../types/comment';
 import { getSortedReviewsByDate } from './../../../util';
+import { AuthorisationStatus } from '../../../const';
 
 type ReviewsProps = {
   reviewsData: Comment[];
 };
-function Reviews({ reviewsData }: ReviewsProps): JSX.Element {
-  const totalReviewsAmount = reviewsData.length;
 
-  const sortedReviewsByDate = getSortedReviewsByDate(reviewsData);
+function Reviews({ reviewsData }: ReviewsProps): JSX.Element {
+
+  const [comments, setComments] = useState<Comment[]>(reviewsData);
+
+  const totalReviewsAmount = comments.length;
+  const sortedReviewsByDate = getSortedReviewsByDate(comments);
+
+  const authorisationStatus = useSelector(getAuthoriseStatus);
+  const isAuthorized = authorisationStatus === AuthorisationStatus.Auth;
 
   return (
     <section className="property__reviews reviews">
@@ -23,7 +33,7 @@ function Reviews({ reviewsData }: ReviewsProps): JSX.Element {
           return <ReviewsItem reviewItemData={reviewItemData} key={keyValue} />;
         })}
       </ul>
-      <ReviewForm />
+      {isAuthorized && <ReviewForm onFormSubmit={setComments}/>}
     </section>
   );
 }
