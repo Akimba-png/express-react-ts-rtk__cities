@@ -3,7 +3,7 @@ import { Offers, OfferServer } from './../types/offer';
 import { User } from './../types/user';
 import { AuthorisationData } from '../types/authorisation';
 import { requireAuthorization, setUserEmail } from './app-user/app-user';
-import { redirectToPage, setDataLoaded, setOffers } from './action';
+import { redirectToPage, setDataLoaded, setFavoriteOffers, setOffers } from './action';
 import { setToken } from '../services/token';
 import { adaptOfferToClient } from '../util';
 import { ApiRoute, AppRoute, AuthorisationStatus } from './../const';
@@ -18,6 +18,13 @@ export const loadOffers =
       .then(() => dispatch(setDataLoaded()));
   };
 
+export const loadFavoriteOffers =
+  (): ThunkCreatorResult => (dispatch, _getState, api) => {
+    api
+      .get<OfferServer[]>(ApiRoute.Favorites)
+      .then((response) => response.data.map((offer: OfferServer) => adaptOfferToClient(offer)))
+      .then((data) => dispatch(setFavoriteOffers(data)));
+  };
 
 export const authorise = (authorisationData: AuthorisationData): ThunkCreatorResult => (dispatch, _getState, api) => {
   api.post(ApiRoute.Login, authorisationData)

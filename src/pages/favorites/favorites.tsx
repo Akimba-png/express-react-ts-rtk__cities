@@ -1,9 +1,28 @@
-import FavoritesCard from '../../components/cards/favorites-card/favorites-card';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from '../../types/thunk';
+import { loadFavoriteOffers } from '../../store/assync-action';
+import { getFavoriteOffers } from '../../store/app-data/selector';
 import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
+import FavoritesCard from '../../components/cards/favorites-card/favorites-card';
 import { offers } from '../../mock';
 
+
 function Favorites(): JSX.Element {
+
+  const dispatch = useDispatch() as AppDispatch;
+
+  useEffect(() => {
+    dispatch(loadFavoriteOffers());
+  }, [dispatch]);
+
+  const favoritesOffers = useSelector(getFavoriteOffers);
+
+  if (!favoritesOffers) {
+    return <h1>Loading</h1>;
+  }
+
   return (
     <div className="page">
       <header className="header">

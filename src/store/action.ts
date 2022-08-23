@@ -5,6 +5,7 @@ import { AppRoute } from '../const';
 
 export enum ActionType {
   SetOffers = 'data/setOffer',
+  SetFavoriteOffers = 'data/setFavoriteOffers',
   SetActiveFilter = 'app/setActiveFilter',
   SetCurrentSortType = 'app/setCurrentSortType',
   SetActiveCardId = 'app/setActiveCardId',
@@ -23,6 +24,8 @@ export const setDataLoaded = (): { type: ActionType.SetDataLoaded } => ({
   type: ActionType.SetDataLoaded,
 });
 
+export const setFavoriteOffers = createAction<Offers>(ActionType.SetFavoriteOffers);
+
 export const setActiveFilter = createAction<string>(ActionType.SetActiveFilter);
 export const setCurrentSortType = createAction<string>(
   ActionType.SetCurrentSortType
@@ -35,7 +38,8 @@ export const redirectToPage = createAction<AppRoute>(ActionType.RedirectToPage);
 
 export type AppDataActions =
   | ReturnType<typeof setOffers>
-  | ReturnType<typeof setDataLoaded>;
+  | ReturnType<typeof setDataLoaded>
+  | ReturnType<typeof setFavoriteOffers>;
 
 export type AppActions =
   | ReturnType<typeof setActiveFilter>
