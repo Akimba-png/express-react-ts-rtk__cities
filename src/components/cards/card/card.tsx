@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/offer';
+import BookmarkButton from '../../bookmark-button/bookmark-button';
 import { StarRating } from './../../../const';
+
 
 type Style = {
   Article: string;
@@ -16,7 +18,9 @@ type CardProps = {
   onMouseEvent?: (id: number | null) => void;
 };
 
+
 function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
+
   const { Article, Wrapper, ImageWidth, ImageHeight, CardInfo } = cardStyle;
   const {
     id,
@@ -25,7 +29,6 @@ function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
     price,
     rating,
     isPremium,
-    isFavorite,
     previewImage,
   } = hotelData;
 
@@ -67,17 +70,7 @@ function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={`place-card__bookmark-button button ${
-              isFavorite ? 'place-card__bookmark-button--active button' : ''
-            }`}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <BookmarkButton id={hotelData.id} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

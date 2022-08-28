@@ -5,11 +5,11 @@ import { AppRoute } from '../const';
 
 export enum ActionType {
   SetOffers = 'data/setOffer',
+  SetDataLoaded = 'data/setDataLoaded',
   SetFavoriteOffers = 'data/setFavoriteOffers',
   SetActiveFilter = 'app/setActiveFilter',
   SetCurrentSortType = 'app/setCurrentSortType',
   SetActiveCardId = 'app/setActiveCardId',
-  SetDataLoaded = 'data/setDataLoaded',
   RedirectToPage = 'app/redirectToPage',
 }
 

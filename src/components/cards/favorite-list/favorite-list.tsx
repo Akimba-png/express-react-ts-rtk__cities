@@ -1,10 +1,13 @@
+import { useSelector } from 'react-redux';
+import { getFavoriteOffers } from '../../../store/app-data/selector';
 import FavoritesCard from '../favorites-card/favorites-card';
-import { offers } from '../../../mock';
 import { getOffersByCity } from './../../../util';
 import { CITIES } from './../../../const';
 
+
 function FavoriteList(): JSX.Element {
 
+  const offers = useSelector(getFavoriteOffers);
   const offersByCity = getOffersByCity(offers);
   const favoriteCities = Object.keys(offersByCity);
   const sortedFavoriteCities = CITIES.filter((city) => favoriteCities.includes(city));
