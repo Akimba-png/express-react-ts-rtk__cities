@@ -6,6 +6,8 @@ import { getFavoriteOffers } from '../../store/app-data/selector';
 import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import FavoriteList from '../../components/cards/favorite-list/favorite-list';
+import FavoriteEmpty from '../favorite-empty/favorite-empty';
+import { EMPTY_LIST } from './../../const';
 
 
 function Favorites(): JSX.Element {
@@ -20,6 +22,10 @@ function Favorites(): JSX.Element {
 
   if (!favoritesOffers) {
     return <h1>Loading</h1>;
+  }
+
+  if (favoritesOffers.length === EMPTY_LIST) {
+    return <FavoriteEmpty />;
   }
 
   return (
