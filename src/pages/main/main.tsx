@@ -3,7 +3,7 @@ import Sorting from '../../components/sorting/sorting';
 import MainCardsContainer from '../../components/cards/main-cards-container/main-cards-container';
 import MainPageMap from '../../components/maps/main-page-map/main-page-map';
 import MainPageTitle from '../../components/main-page-title/main-page-title';
-import Logo from '../../components/logo/logo';
+import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 
 function Main(): JSX.Element {

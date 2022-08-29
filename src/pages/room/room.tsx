@@ -4,7 +4,7 @@ import RoomImage from '../../components/room-image/room-image';
 import RoomCardsContainer from '../../components/cards/room-cards-container/room-cards-container';
 import RoomPageMap from '../../components/maps/room-page-map/room-page-map';
 import Reviews from '../../components/reviews-block/reviews/reviews';
-import Logo from '../../components/logo/logo';
+import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';

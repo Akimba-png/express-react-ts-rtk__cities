@@ -1,5 +1,6 @@
 import Navigation from '../../components/navigation/navigation';
-import Logo from './../../components/logo/logo';
+import Logo from '../../components/logo-block/logo/logo';
+import FooterLogo from '../../components/logo-block/footer-logo/footer-logo';
 
 function FavoriteEmpty(): JSX.Element {
   return (
@@ -29,15 +30,7 @@ function FavoriteEmpty(): JSX.Element {
         </div>
       </main>
       <footer className="footer">
-        <a className="footer__logo-link" href="main.html">
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width="64"
-            height="33"
-          />
-        </a>
+        <FooterLogo />
       </footer>
     </div>
   );

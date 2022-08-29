@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import { AppDispatch } from '../../types/thunk';
 import { authorise } from '../../store/assync-action';
-import Logo from '../../components/logo/logo';
+import Logo from '../../components/logo-block/logo/logo';
 import ValidatorMessage from '../../components/validator-message/validator-message';
 import { AppRoute, AuthorisationStatus, SignInInvalidText, signInvalidatorMessageStyle } from '../../const';
 import { getAuthoriseStatus } from '../../store/app-user/selector';

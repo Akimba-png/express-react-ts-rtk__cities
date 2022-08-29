@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from '../../types/thunk';
 import { loadFavoriteOffers } from '../../store/assync-action';
 import { getFavoriteOffers } from '../../store/app-data/selector';
-import Logo from '../../components/logo/logo';
+import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import FavoriteList from '../../components/cards/favorite-list/favorite-list';
 import FavoriteEmpty from '../favorite-empty/favorite-empty';
+import FooterLogo from '../../components/logo-block/footer-logo/footer-logo';
 import { EMPTY_LIST } from './../../const';
 
 
@@ -50,15 +51,7 @@ function Favorites(): JSX.Element {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width="64"
-            height="33"
-          />
-        </a>
+        <FooterLogo />
       </footer>
     </div>
   );
