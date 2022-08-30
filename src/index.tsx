@@ -9,10 +9,12 @@ import { loadOffers, checkAuthorization } from './store/assync-action';
 import { redirect } from './store/middlewares/redirect';
 import { requireAuthorization } from './store/app-user/app-user';
 import { AuthorisationStatus } from './const';
+import { setFavoriteOffers } from './store/action';
 
 
 export const api = createApi(() => {
   store.dispatch(requireAuthorization(AuthorisationStatus.NotAuth));
+  store.dispatch(setFavoriteOffers([]));
 });
 
 export const store = configureStore({

@@ -7,6 +7,7 @@ export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', '
 export const DEFAULT_CITY = 'Paris';
 export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
 export const EMPTY_STRING = '';
+export const EMPTY_LIST = 0;
 
 export enum AppRoute {
   Main = '/',
@@ -21,6 +22,7 @@ export enum ApiRoute {
   Comments = '/comments/',
   Login = '/login',
   Logout = '/logout',
+  Favorites = '/favorite/',
 }
 
 export enum AuthorisationStatus {

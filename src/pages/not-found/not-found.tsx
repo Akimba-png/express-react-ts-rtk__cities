@@ -1,4 +1,4 @@
-import Logo from '../../components/logo/logo';
+import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 
 function NotFound(): JSX.Element {
