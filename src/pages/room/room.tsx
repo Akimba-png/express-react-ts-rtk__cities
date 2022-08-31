@@ -6,6 +6,7 @@ import RoomPageMap from '../../components/maps/room-page-map/room-page-map';
 import Reviews from '../../components/reviews-block/reviews/reviews';
 import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
+import Loading from '../loading/loading';
 import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';
 
@@ -20,7 +21,7 @@ function Room(): JSX.Element {
   const roomData = useAssync(offerId);
 
   if (!roomData.length) {
-    return <h1>Loading</h1>;
+    return <Loading />;
   }
   const [currentOffer, nearbyOffers, comments] = roomData;
   const nearbyOffersWithCurrent = [currentOffer, ...nearbyOffers];

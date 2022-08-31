@@ -13,6 +13,7 @@ import Favorites from '../../pages/favorites/favorites';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import SignIn from './../../pages/sign-in/sign-in';
+import Loading from '../../pages/loading/loading';
 import { AppRoute, AuthorisationStatus } from '../../const';
 
 
@@ -21,7 +22,7 @@ function App(): JSX.Element {
   const isAuthenticated = useSelector(getAuthoriseStatus) !== AuthorisationStatus.Unknow;
 
   if (!isDataLoaded || !isAuthenticated ) {
-    return <h1>Loading</h1>;
+    return <Loading />;
   }
 
   return (
