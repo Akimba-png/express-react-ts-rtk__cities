@@ -30,6 +30,7 @@ export const loadFavoriteOffers =
 export const switchFavoriteStatus = (
   offerId: number,
   status: number,
+  onError: () => void,
 ): ThunkCreatorResult => (dispatch, getState, api) => {
   api
     .post(`${ApiRoute.Favorites}${offerId}/${status}`)
@@ -43,7 +44,8 @@ export const switchFavoriteStatus = (
       dispatch(setFavoriteOffers(
         favoriteOffers.filter((offer) => offer.id !== updatedOffer.id)
       ));
-    });
+    })
+    .catch(onError);
 };
 
 export const authorise = (authorisationData: AuthorisationData): ThunkCreatorResult => (dispatch, _getState, api) => {
