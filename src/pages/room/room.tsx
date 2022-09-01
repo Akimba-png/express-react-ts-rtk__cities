@@ -7,6 +7,7 @@ import Reviews from '../../components/reviews-block/reviews/reviews';
 import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Loading from '../loading/loading';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';
 
@@ -27,6 +28,7 @@ function Room(): JSX.Element {
   const nearbyOffersWithCurrent = [currentOffer, ...nearbyOffers];
 
   const {
+    id,
     images,
     isPremium,
     title,
@@ -71,19 +73,7 @@ function Room(): JSX.Element {
               )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
-                <button
-                  className="property__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="property__bookmark-icon"
-                    width="31"
-                    height="33"
-                  >
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton id={id} isPropertyButton />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
