@@ -4,8 +4,8 @@ import { AxiosError } from 'axios';
 import { Offer, OfferServer } from '../types/offer';
 import { Comment, CommentServer } from '../types/comment';
 import { api } from './../index';
-import { adaptCommentToClient, adaptOfferToClient } from '../util';
-import { ApiRoute, AppRoute, StatusCode } from '../const';
+import { adaptCommentToClient, adaptOfferToClient, notify } from '../util';
+import { ApiRoute, AppRoute, StatusCode, ErrorToastParam } from '../const';
 
 export const useAssync = (id: string) => {
   const [roomData, setRoomData] = useState<[Offer, Offer[], Comment[]] | []>(
@@ -32,6 +32,11 @@ export const useAssync = (id: string) => {
       .catch((error: AxiosError) => {
         if (error.response?.status === StatusCode.NotFound) {
           navigate(AppRoute.NotFound);
+        } else {
+          notify();
+          setTimeout(
+            () => navigate(AppRoute.Main), ErrorToastParam.OfferShowTime
+          );
         }
       });
   }, [id]);
