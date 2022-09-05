@@ -11,6 +11,7 @@ import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';
 
+const IMAGES_RANGE_TO_RENDER = [0, 6];
 
 type Param = {
   offerId: string;
@@ -58,7 +59,7 @@ function Room(): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image, i) => {
+              {images.slice(...IMAGES_RANGE_TO_RENDER).map((image, i) => {
                 const keyValue = `${image}-${i}`;
                 return <RoomImage imageSrc={image} key={keyValue} />;
               })}
