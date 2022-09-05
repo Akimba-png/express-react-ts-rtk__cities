@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FocusEvent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { AppDispatch } from '../../types/thunk';
 import { State } from './../../store/root-reducer';
@@ -33,10 +33,23 @@ function Sorting({currentSortType, onSortingChange}: ConnectedSortingProps): JSX
     onSortingChange(sortOption);
   };
 
+  const handleFormBlurred = (evt: FocusEvent) => {
+    if (!evt.currentTarget.contains(evt.relatedTarget)) {
+      setListStatus(false);
+    }
+  };
+
   const handleListClick = () => setListStatus(!listStatus);
 
+
   return (
-    <form onClick={handleListClick} className="places__sorting" action="#" method="get">
+    <form
+      onClick={handleListClick}
+      onBlur={handleFormBlurred}
+      className="places__sorting"
+      action="#"
+      method="get"
+    >
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
         {currentSortType}

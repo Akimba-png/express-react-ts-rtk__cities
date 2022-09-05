@@ -1,10 +1,13 @@
 import { Offer, OfferServer, OffersByCity } from './types/offer';
 import { Comment, CommentServer } from './types/comment';
+import { toast } from 'react-toastify';
+
 import {
   SuffixEnding,
   Month,
   COMMENT_DATE_LENGTH,
   MAX_COMMENTS_COUNT,
+  ErrorToastParam,
 } from './const';
 
 export const adaptOfferToClient = (offer: OfferServer): Offer => {
@@ -77,3 +80,8 @@ export const getOffersByCity = (offers: Offer[]) =>
     acc[cityName] = [offer];
     return acc;
   }, {});
+
+
+export const notify = () => {
+  toast.error(ErrorToastParam.Text, {autoClose: ErrorToastParam.ShowTime as number});
+};

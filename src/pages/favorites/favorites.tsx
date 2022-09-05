@@ -21,10 +21,6 @@ function Favorites(): JSX.Element {
 
   const favoritesOffers = useSelector(getFavoriteOffers);
 
-  if (!favoritesOffers) {
-    return <h1>Loading</h1>;
-  }
-
   if (favoritesOffers.length === EMPTY_LIST) {
     return <FavoriteEmpty />;
   }

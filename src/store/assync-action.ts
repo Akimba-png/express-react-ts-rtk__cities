@@ -5,7 +5,7 @@ import { AuthorisationData } from '../types/authorisation';
 import { requireAuthorization, setUserEmail } from './app-user/app-user';
 import { redirectToPage, setDataLoaded, setFavoriteOffers, setOffers } from './action';
 import { setToken } from '../services/token';
-import { adaptOfferToClient } from '../util';
+import { adaptOfferToClient, notify } from '../util';
 import { ApiRoute, AppRoute, AuthorisationStatus } from './../const';
 import { NameSpace } from './root-reducer';
 
@@ -16,7 +16,8 @@ export const loadOffers =
       .get<OfferServer[]>(ApiRoute.Offers)
       .then((response) => response.data.map((offer: OfferServer) => adaptOfferToClient(offer)))
       .then((offers: Offers) => dispatch(setOffers(offers)))
-      .then(() => dispatch(setDataLoaded()));
+      .then(() => dispatch(setDataLoaded()))
+      .catch(notify);
   };
 
 export const loadFavoriteOffers =
@@ -24,12 +25,14 @@ export const loadFavoriteOffers =
     api
       .get<OfferServer[]>(ApiRoute.Favorites)
       .then((response) => response.data.map((offer: OfferServer) => adaptOfferToClient(offer)))
-      .then((data) => dispatch(setFavoriteOffers(data)));
+      .then((data) => dispatch(setFavoriteOffers(data)))
+      .catch(notify);
   };
 
 export const switchFavoriteStatus = (
   offerId: number,
   status: number,
+  onError: () => void,
 ): ThunkCreatorResult => (dispatch, getState, api) => {
   api
     .post(`${ApiRoute.Favorites}${offerId}/${status}`)
@@ -43,6 +46,10 @@ export const switchFavoriteStatus = (
       dispatch(setFavoriteOffers(
         favoriteOffers.filter((offer) => offer.id !== updatedOffer.id)
       ));
+    })
+    .catch(() => {
+      onError();
+      notify();
     });
 };
 
@@ -54,7 +61,8 @@ export const authorise = (authorisationData: AuthorisationData): ThunkCreatorRes
       dispatch(requireAuthorization(AuthorisationStatus.Auth));
     })
     .then(() => dispatch(loadFavoriteOffers()))
-    .then(() => dispatch(redirectToPage(AppRoute.Main)));
+    .then(() => dispatch(redirectToPage(AppRoute.Main)))
+    .catch(notify);
 };
 
 export const checkAuthorization = (): ThunkCreatorResult => (dispatch, _getState, api) => {
@@ -73,5 +81,6 @@ export const logout = (): ThunkCreatorResult => (dispatch, _getState, api) => {
       dispatch(requireAuthorization(AuthorisationStatus.NotAuth));
       dispatch(setUserEmail(''));
       dispatch(setFavoriteOffers([]));
-    });
+    })
+    .catch(notify);
 };

@@ -111,3 +111,9 @@ export const signInvalidatorMessageStyle = {
   bottom: '4px',
   left: '5px',
 };
+
+export enum ErrorToastParam {
+  Text = 'Something strange is going here...\nTry again later...',
+  ShowTime = 3000,
+  OfferShowTime = 4000,
+}

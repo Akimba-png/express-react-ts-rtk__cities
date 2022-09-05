@@ -5,11 +5,13 @@ import { rootReducer } from './store/root-reducer';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { createApi } from './services/api';
+import { ToastContainer } from 'react-toastify';
 import { loadOffers, checkAuthorization } from './store/assync-action';
 import { redirect } from './store/middlewares/redirect';
 import { requireAuthorization } from './store/app-user/app-user';
 import { AuthorisationStatus } from './const';
 import { setFavoriteOffers } from './store/action';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const api = createApi(() => {
@@ -37,6 +39,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <App />
     </Provider>
   </React.StrictMode>

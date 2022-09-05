@@ -1,0 +1,22 @@
+@keyframes shake {
+  0% {
+    transform: translateX(2px);
+  }
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(-2px);
+  }
+}
+
+.place-card__bookmark-button--error,
+.property__bookmark-button--error {
+  animation-name: shake;
+  animation-duration: 0.5s;
+}

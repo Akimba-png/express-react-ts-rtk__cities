@@ -6,9 +6,12 @@ import RoomPageMap from '../../components/maps/room-page-map/room-page-map';
 import Reviews from '../../components/reviews-block/reviews/reviews';
 import Logo from '../../components/logo-block/logo/logo';
 import Navigation from '../../components/navigation/navigation';
+import Loading from '../loading/loading';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { checkPluralPostfix } from '../../util';
 import { StarRating } from '../../const';
 
+const IMAGES_RANGE_TO_RENDER = [0, 6];
 
 type Param = {
   offerId: string;
@@ -20,12 +23,13 @@ function Room(): JSX.Element {
   const roomData = useAssync(offerId);
 
   if (!roomData.length) {
-    return <h1>Loading</h1>;
+    return <Loading />;
   }
   const [currentOffer, nearbyOffers, comments] = roomData;
   const nearbyOffersWithCurrent = [currentOffer, ...nearbyOffers];
 
   const {
+    id,
     images,
     isPremium,
     title,
@@ -55,7 +59,7 @@ function Room(): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image, i) => {
+              {images.slice(...IMAGES_RANGE_TO_RENDER).map((image, i) => {
                 const keyValue = `${image}-${i}`;
                 return <RoomImage imageSrc={image} key={keyValue} />;
               })}
@@ -70,19 +74,7 @@ function Room(): JSX.Element {
               )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
-                <button
-                  className="property__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="property__bookmark-icon"
-                    width="31"
-                    height="33"
-                  >
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton id={id} isPropertyButton />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
