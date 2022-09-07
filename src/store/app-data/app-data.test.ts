@@ -39,5 +39,3 @@ describe('Reducer: app-data', () => {
     );
   });
 });
-
-export {};
