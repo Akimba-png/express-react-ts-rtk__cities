@@ -9,16 +9,16 @@ import {
   redirectToPage,
 } from './action';
 import { requireAuthorization, requireLogout, setUserEmail } from './app-user/app-user';
-import { offers } from '../mock';
+import { mockClientOffers } from '../mock';
 import { AppRoute, AuthorisationStatus, DEFAULT_CITY, SortingOptions } from '../const';
 
 describe('Actions', () => {
   it('action creator for setOffers should return correct action', () => {
     const expectedAction = {
       type: ActionType.SetOffers,
-      payload: offers,
+      payload: mockClientOffers,
     };
-    expect(setOffers(offers)).toEqual(expectedAction);
+    expect(setOffers(mockClientOffers)).toEqual(expectedAction);
   });
 
   it('action creator setDataLoaded should return correct action', () => {
@@ -31,9 +31,9 @@ describe('Actions', () => {
   it('action creator for setFavoriteOffers shoult return correct action', () => {
     const expectedAction = {
       type: ActionType.SetFavoriteOffers,
-      payload: offers,
+      payload: mockClientOffers,
     };
-    expect(setFavoriteOffers(offers)).toEqual(expectedAction);
+    expect(setFavoriteOffers(mockClientOffers)).toEqual(expectedAction);
   });
 
   it('action creator for setActiveFilter should return correct action', () => {

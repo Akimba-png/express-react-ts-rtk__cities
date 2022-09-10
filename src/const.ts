@@ -33,6 +33,8 @@ export enum AuthorisationStatus {
 
 export enum StatusCode {
   NotFound = 404,
+  Success = 200,
+  UnAuthorized = 401,
 }
 
 export enum StarRating {

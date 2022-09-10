@@ -1,7 +1,7 @@
 import { Offers } from '../../types/offer';
 import { appData } from './app-data';
 import { setDataLoaded, setFavoriteOffers, setOffers } from '../action';
-import { offers } from '../../mock';
+import { mockClientOffers } from '../../mock';
 
 const initialState = {
   offers: [] as Offers,
@@ -12,11 +12,11 @@ const initialState = {
 describe('Reducer: app-data', () => {
   it('should update offers on offers loaded', () => {
     const expectedState = {
-      offers: offers,
+      offers: mockClientOffers,
       favoriteOffers: [],
       isDataLoaded: false,
     };
-    expect(appData(initialState, setOffers(offers))).toEqual(expectedState);
+    expect(appData(initialState, setOffers(mockClientOffers))).toEqual(expectedState);
   });
 
   it('should update isDataLoaded on loaded status changed', () => {
@@ -31,10 +31,10 @@ describe('Reducer: app-data', () => {
   it('should update favoriteOffers on favoriteOffers loaded', () => {
     const expectedState = {
       offers: [],
-      favoriteOffers: offers,
+      favoriteOffers: mockClientOffers,
       isDataLoaded: false,
     };
-    expect(appData(initialState, setFavoriteOffers(offers))).toEqual(
+    expect(appData(initialState, setFavoriteOffers(mockClientOffers))).toEqual(
       expectedState
     );
   });
