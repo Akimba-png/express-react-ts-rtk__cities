@@ -54,7 +54,7 @@ function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
         </div>
       )}
       <div className={`${Wrapper} place-card__image-wrapper`}>
-        <Link to={`/offer/${id}`}>
+        <Link to={`/offer/${id}`} data-testid="card-link">
           <img
             className="place-card__image"
             src={previewImage}

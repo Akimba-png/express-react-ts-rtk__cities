@@ -1,3 +1,4 @@
+import { FIRST_ELEMENT_INDEX } from './const';
 import { adaptOfferToClient } from './util';
 
 export const mockServerOffers = [{
@@ -59,6 +60,7 @@ export const mockServerOffers = [{
 export const mockClientOffers =
   mockServerOffers.map((offer) => adaptOfferToClient(offer));
 
+export const mockClientOffer = mockClientOffers[FIRST_ELEMENT_INDEX];
 
 export const mockTrueFavoriteOffer = {
   'city': {

@@ -8,6 +8,7 @@ export const DEFAULT_CITY = 'Paris';
 export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
 export const EMPTY_STRING = '';
 export const EMPTY_LIST = 0;
+export const FAKE_CONTENT = 'page-content';
 
 export enum AppRoute {
   Main = '/',
