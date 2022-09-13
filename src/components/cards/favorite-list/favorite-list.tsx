@@ -27,7 +27,7 @@ function FavoriteList(): JSX.Element {
       {sortedFavoriteCities.map((city, i) => {
         const keyValue = city + i;
         return (
-          <li className="favorites__locations-items" key={keyValue}>
+          <li className="favorites__locations-items" key={keyValue} data-testid='favorite-list-item' >
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
                 <a
