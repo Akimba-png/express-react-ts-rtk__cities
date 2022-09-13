@@ -47,7 +47,12 @@ function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
   };
 
   return (
-    <article {...setMouseListener(id)} className={`${Article} place-card`}>
+    <article
+      {...setMouseListener(id)}
+      className={`${Article}
+      place-card`}
+      data-testid="card-id"
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
