@@ -42,6 +42,7 @@ function Filter({ activeFilter, onFilterChange }: ConnectedFilterProps) {
                   onClick={handleFilterChange(city)}
                   className={`locations__item-link tabs__item ${city === activeFilter ? 'tabs__item--active' : ''}`}
                   href="/#"
+                  data-testid={`link-id-${i}`}
                 >
                   <span>{city}</span>
                 </a>
@@ -54,4 +55,5 @@ function Filter({ activeFilter, onFilterChange }: ConnectedFilterProps) {
   );
 }
 
+export { Filter };
 export default connector(Filter);
