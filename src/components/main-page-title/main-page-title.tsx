@@ -22,4 +22,5 @@ function MainPageTitle({filteredOffers}: PropsFromRedux): JSX.Element {
   );
 }
 
+export { MainPageTitle };
 export default connector(MainPageTitle);
