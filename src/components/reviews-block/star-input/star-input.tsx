@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-type StarInputProps = {
+export type StarInputProps = {
   rating: number;
   title: string;
   currentValue: string;
