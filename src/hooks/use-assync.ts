@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { Offer, OfferServer } from '../types/offer';
 import { Comment, CommentServer } from '../types/comment';
-import { api } from './../index';
+import { api } from './../store/store';
 import { adaptCommentToClient, adaptOfferToClient, notify } from '../util';
 import { ApiRoute, AppRoute, StatusCode, ErrorToastParam } from '../const';
 
