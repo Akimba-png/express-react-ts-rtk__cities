@@ -7,6 +7,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { history } from '../../../store/history';
 import ReviewForm from './review-form';
+import { mockServerComment } from './../../../mock';
 import { AppRoute } from '../../../const';
 
 const STAR_RATING_ID = 'star-input-1';
@@ -15,27 +16,12 @@ const TEST_TEXT =
   'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.';
 const FAKE_ROUTE = 'offer/1';
 
-const fakeReplies = [
-  {
-    'comment': 'Test comment',
-    'date': '2019-05-08T14:13:56.569Z',
-    'id': 1,
-    'rating': 4,
-    'user': {
-      'avatar_url': 'img/1.png',
-      'id': 4,
-      'is_pro': false,
-      'name': 'Max',
-    },
-  },
-];
-
 history.push(FAKE_ROUTE);
 const fakeHandleFormSubmit = jest.fn();
 jest.mock('./../../../store/store', () => ({
   __esModule: true,
   api: {
-    post: () => Promise.resolve({ data: fakeReplies }),
+    post: () => Promise.resolve({ data: [mockServerComment] }),
   },
 }));
 

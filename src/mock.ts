@@ -1,5 +1,5 @@
 import { FIRST_ELEMENT_INDEX } from './const';
-import { adaptOfferToClient } from './util';
+import { adaptCommentToClient, adaptOfferToClient } from './util';
 
 export const mockServerOffers = [{
   'city': {
@@ -173,3 +173,18 @@ export const mockFalseFavoriteOffer = {
   },
   'id': 1
 };
+
+export const mockServerComment = {
+  'comment': 'Test comment',
+  'date': '2019-05-08T14:13:56.569Z',
+  'id': 1,
+  'rating': 4,
+  'user': {
+    'avatar_url': 'img/1.png',
+    'id': 4,
+    'is_pro': false,
+    'name': 'Max',
+  },
+};
+
+export const mockClientComment = adaptCommentToClient(mockServerComment);
