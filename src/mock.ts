@@ -3,7 +3,7 @@ import { adaptCommentToClient, adaptOfferToClient } from './util';
 
 export const mockServerOffers = [{
   'city': {
-    'name': 'Hamburg',
+    'name': 'Paris',
     'location': {
       'latitude': 53.550341,
       'longitude': 10.000654,
@@ -64,7 +64,7 @@ export const mockClientOffer = mockClientOffers[FIRST_ELEMENT_INDEX];
 
 export const mockTrueFavoriteOffer = {
   'city': {
-    'name': 'Hamburg',
+    'name': 'Paris',
     'location': {
       'latitude': 53.550341,
       'longitude': 10.000654,
@@ -120,7 +120,7 @@ export const mockTrueFavoriteOffer = {
 
 export const mockFalseFavoriteOffer = {
   'city': {
-    'name': 'Hamburg',
+    'name': 'Paris',
     'location': {
       'latitude': 53.550341,
       'longitude': 10.000654,

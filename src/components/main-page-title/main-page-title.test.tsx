@@ -3,7 +3,7 @@ import { renderTestComponent as render } from '../../test/helper/render-test-com
 import { MainPageTitle } from './main-page-title';
 import { mockClientOffers } from './../../mock';
 
-const TEXT_MATCHER = 'Hamburg';
+const TEXT_MATCHER = 'Paris';
 
 describe('Component MainPageTitle:', () => {
 
