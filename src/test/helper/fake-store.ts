@@ -1,3 +1,4 @@
+import thunk from 'redux-thunk';
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore } from '@jedmao/redux-mock-store';
@@ -16,14 +17,15 @@ import {
 const onAuthorizedFake = jest.fn();
 const api = createApi(onAuthorizedFake);
 export const mockApi = new MockAdapter(api);
+const middlewares = [thunk.withExtraArgument(api)];
 
-const mockStore = configureMockStore<
+export const mockStore = configureMockStore<
   State,
   Action,
   ThunkDispatch<State, typeof api, Action>
->();
+>(middlewares);
 
-const fakeState: State = {
+export const fakeState: State = {
   data: {
     offers: mockClientOffers,
     favoriteOffers: mockClientOffers,
