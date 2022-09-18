@@ -49,6 +49,7 @@ function Sorting({currentSortType, onSortingChange}: ConnectedSortingProps): JSX
       className="places__sorting"
       action="#"
       method="get"
+      data-testid="form-id"
     >
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
@@ -71,4 +72,5 @@ function Sorting({currentSortType, onSortingChange}: ConnectedSortingProps): JSX
   );
 }
 
+export { Sorting };
 export default connector(Sorting);
