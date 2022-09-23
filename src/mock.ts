@@ -188,3 +188,4 @@ export const mockServerComment = {
 };
 
 export const mockClientComment = adaptCommentToClient(mockServerComment);
+export const mockClientComments = [mockClientComment];
