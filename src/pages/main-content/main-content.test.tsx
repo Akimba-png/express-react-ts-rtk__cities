@@ -8,6 +8,7 @@ import { mockClientOffers } from '../../mock';
 import { AppRoute, AuthorisationStatus, DEFAULT_CITY, SortingOptions } from '../../const';
 
 const TEST_ID = 'card-id';
+const TEXT_MATCHER = 'No places to stay available';
 
 const mockStore = configureMockStore();
 const renderHelper = (fakeOffers: Offers | []) => {
@@ -43,6 +44,6 @@ describe('Component MainContent:', () => {
 
   it('should render empty page if there are no offers in the city', () => {
     renderHelper([]);
-    expect(screen.getByText('No places to stay available')).toBeInTheDocument();
+    expect(screen.getByText(TEXT_MATCHER)).toBeInTheDocument();
   });
 });
