@@ -7,7 +7,7 @@ describe('component FavoriteCard:', () => {
 
   it('should be in the document', () => {
     render(<FavoriteCard hotelData={mockClientOffer} />);
-    expect(screen.getByAltText('Place image')).toBeInTheDocument();
+    expect(screen.getByAltText('Place to rent')).toBeInTheDocument();
   });
 
   it('should have correct styles', () => {

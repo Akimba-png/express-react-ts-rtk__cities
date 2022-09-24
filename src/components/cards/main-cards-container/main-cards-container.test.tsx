@@ -11,7 +11,7 @@ describe('component FavoriteCard:', () => {
         handleActiveCardChange={jest.fn()}
       />
     );
-    expect(screen.getByAltText('Place image')).toBeInTheDocument();
+    expect(screen.getByAltText('Place to rent')).toBeInTheDocument();
   });
 
   it('should have correct styles', () => {

@@ -39,7 +39,7 @@ export const useAssync = (id: string) => {
           );
         }
       });
-  }, [id]);
+  }, [id, navigate]);
 
   return roomData;
 };

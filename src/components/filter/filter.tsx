@@ -1,19 +1,22 @@
-import { connect } from 'react-redux';
-import { ConnectedProps } from 'react-redux';
 import { MouseEvent } from 'react';
+import { useLocation } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
 import { AppDispatch } from '../../types/thunk';
 import { State } from '../../store/root-reducer';
-import { setActiveFilter } from './../../store/action';
+import { redirectToPage, setActiveFilter } from './../../store/action';
 import { getActiveFilter } from '../../store/app-interface/selector';
-import { CITIES } from './../../const';
+import { AppRoute, CITIES } from './../../const';
 
 const mapStateToProps = (state: State) => ({
   activeFilter: getActiveFilter(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  onFilterChange(choosenCity: string) {
+  onFilterChange(choosenCity: string, currentPath: string) {
     dispatch(setActiveFilter(choosenCity));
+    if (currentPath !== AppRoute.Main) {
+      dispatch(redirectToPage(AppRoute.Main));
+    }
   },
 });
 
@@ -24,10 +27,13 @@ type ConnectedFilterProps = PropsFromRedux
 
 function Filter({ activeFilter, onFilterChange }: ConnectedFilterProps) {
 
+  const location = useLocation();
+  const path = location.pathname;
+
   const handleFilterChange =
-    (city: string) => (evt: MouseEvent<HTMLAnchorElement>) => {
+    (city: string, pathName: string) => (evt: MouseEvent<HTMLAnchorElement>) => {
       evt.preventDefault();
-      onFilterChange(city);
+      onFilterChange(city, pathName);
     };
 
   return (
@@ -39,7 +45,7 @@ function Filter({ activeFilter, onFilterChange }: ConnectedFilterProps) {
             return (
               <li className="locations__item" key={keyPropValue}>
                 <a
-                  onClick={handleFilterChange(city)}
+                  onClick={handleFilterChange(city, path)}
                   className={`locations__item-link tabs__item ${city === activeFilter ? 'tabs__item--active' : ''}`}
                   href="/#"
                   data-testid={`link-id-${i}`}

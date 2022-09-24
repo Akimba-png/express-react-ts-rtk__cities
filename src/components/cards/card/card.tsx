@@ -65,7 +65,7 @@ function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
             src={previewImage}
             width={ImageWidth}
             height={ImageHeight}
-            alt="Place image"
+            alt="Place to rent"
           />
         </Link>
       </div>

@@ -52,12 +52,12 @@ const renderComponent = () => render(
 describe('Component Card:', () => {
   it('should be in the document', () => {
     renderComponent();
-    expect(screen.getByAltText('Place image')).toBeInTheDocument();
+    expect(screen.getByAltText('Place to rent')).toBeInTheDocument();
   });
 
   it('should render offer Page on user click on Card', async () => {
     renderComponent();
-    expect(screen.getByAltText('Place image')).toBeInTheDocument();
+    expect(screen.getByAltText('Place to rent')).toBeInTheDocument();
     await userEvent.click(screen.getByTestId('card-link'));
     expect(screen.getByText(FAKE_CONTENT)).toBeInTheDocument();
   });
