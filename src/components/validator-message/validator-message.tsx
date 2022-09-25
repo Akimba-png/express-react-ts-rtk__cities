@@ -1,8 +1,10 @@
+export type ExtraStyle = {
+  [key: string]: string;
+}
+
 type ValidatorMessageProps = {
   messageText: string,
-  extraStyle?: {
-    [key: string]: string;
-  }
+  extraStyle?: ExtraStyle,
 }
 
 function ValidatorMessage({messageText, extraStyle = {}}: ValidatorMessageProps): JSX.Element {

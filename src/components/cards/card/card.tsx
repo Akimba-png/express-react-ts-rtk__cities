@@ -47,20 +47,25 @@ function Card({ cardStyle, hotelData, onMouseEvent }: CardProps): JSX.Element {
   };
 
   return (
-    <article {...setMouseListener(id)} className={`${Article} place-card`}>
+    <article
+      {...setMouseListener(id)}
+      className={`${Article}
+      place-card`}
+      data-testid="card-id"
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
       <div className={`${Wrapper} place-card__image-wrapper`}>
-        <Link to={`/offer/${id}`}>
+        <Link to={`/offer/${id}`} data-testid="card-link">
           <img
             className="place-card__image"
             src={previewImage}
             width={ImageWidth}
             height={ImageHeight}
-            alt="Place image"
+            alt="Place to rent"
           />
         </Link>
       </div>

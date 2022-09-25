@@ -8,6 +8,9 @@ export const DEFAULT_CITY = 'Paris';
 export const VALIDATOR_MESSAGE_SHOW_TIME = 2000;
 export const EMPTY_STRING = '';
 export const EMPTY_LIST = 0;
+export const FAKE_CONTENT = 'page-content';
+export const FAKE_EMAIL = 'test@test.ru';
+export const FAKE_ID = 1;
 
 export enum AppRoute {
   Main = '/',
@@ -33,6 +36,8 @@ export enum AuthorisationStatus {
 
 export enum StatusCode {
   NotFound = 404,
+  Success = 200,
+  UnAuthorized = 401,
 }
 
 export enum StarRating {

@@ -11,29 +11,28 @@ import { NameSpace } from './root-reducer';
 
 
 export const loadOffers =
-  (): ThunkCreatorResult => (dispatch, _getState, api) => {
+  (): ThunkCreatorResult => (dispatch, _getState, api) =>
     api
       .get<OfferServer[]>(ApiRoute.Offers)
       .then((response) => response.data.map((offer: OfferServer) => adaptOfferToClient(offer)))
       .then((offers: Offers) => dispatch(setOffers(offers)))
       .then(() => dispatch(setDataLoaded()))
       .catch(notify);
-  };
+
 
 export const loadFavoriteOffers =
-  (): ThunkCreatorResult => (dispatch, _getState, api) => {
+  (): ThunkCreatorResult => (dispatch, _getState, api) =>
     api
       .get<OfferServer[]>(ApiRoute.Favorites)
       .then((response) => response.data.map((offer: OfferServer) => adaptOfferToClient(offer)))
       .then((data) => dispatch(setFavoriteOffers(data)))
       .catch(notify);
-  };
 
 export const switchFavoriteStatus = (
   offerId: number,
   status: number,
   onError: () => void,
-): ThunkCreatorResult => (dispatch, getState, api) => {
+): ThunkCreatorResult => (dispatch, getState, api) =>
   api
     .post(`${ApiRoute.Favorites}${offerId}/${status}`)
     .then((response) => adaptOfferToClient(response.data))
@@ -51,9 +50,8 @@ export const switchFavoriteStatus = (
       onError();
       notify();
     });
-};
 
-export const authorise = (authorisationData: AuthorisationData): ThunkCreatorResult => (dispatch, _getState, api) => {
+export const authorise = (authorisationData: AuthorisationData): ThunkCreatorResult => (dispatch, _getState, api) =>
   api.post(ApiRoute.Login, authorisationData)
     .then((response) => {
       setToken(response.data.token);
@@ -63,19 +61,18 @@ export const authorise = (authorisationData: AuthorisationData): ThunkCreatorRes
     .then(() => dispatch(loadFavoriteOffers()))
     .then(() => dispatch(redirectToPage(AppRoute.Main)))
     .catch(notify);
-};
 
-export const checkAuthorization = (): ThunkCreatorResult => (dispatch, _getState, api) => {
+export const checkAuthorization = (): ThunkCreatorResult => (dispatch, _getState, api) =>
   api.get<User>(ApiRoute.Login)
     .then((response) => {
       dispatch(setUserEmail(response.data.email));
-      dispatch(loadFavoriteOffers());
     })
+    .then(() => dispatch(loadFavoriteOffers()))
     .then(() => dispatch(requireAuthorization(AuthorisationStatus.Auth)))
     .catch(() => null);
-};
 
-export const logout = (): ThunkCreatorResult => (dispatch, _getState, api) => {
+
+export const logout = (): ThunkCreatorResult => (dispatch, _getState, api) =>
   api.delete(ApiRoute.Logout)
     .then(() => {
       dispatch(requireAuthorization(AuthorisationStatus.NotAuth));
@@ -83,4 +80,3 @@ export const logout = (): ThunkCreatorResult => (dispatch, _getState, api) => {
       dispatch(setFavoriteOffers([]));
     })
     .catch(notify);
-};

@@ -6,6 +6,7 @@ import { setActiveFilter, redirectToPage } from '../../../store/action';
 import FavoritesCard from '../favorites-card/favorites-card';
 import { getOffersByCity } from './../../../util';
 import { AppRoute, CITIES } from './../../../const';
+import { Offer } from '../../../types/offer';
 
 
 function FavoriteList(): JSX.Element {
@@ -27,7 +28,7 @@ function FavoriteList(): JSX.Element {
       {sortedFavoriteCities.map((city, i) => {
         const keyValue = city + i;
         return (
-          <li className="favorites__locations-items" key={keyValue}>
+          <li className="favorites__locations-items" key={keyValue} data-testid='favorite-list-item' >
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
                 <a
@@ -39,7 +40,7 @@ function FavoriteList(): JSX.Element {
               </div>
             </div>
             <div className="favorites__places">
-              {offersByCity[city].map((hotelData: any) => (
+              {offersByCity[city].map((hotelData: Offer) => (
                 <FavoritesCard hotelData={hotelData} key={hotelData.id} />
               ))}
             </div>

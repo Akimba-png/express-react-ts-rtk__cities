@@ -2,7 +2,7 @@ import { Dispatch, MouseEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { Comment } from '../../../types/comment';
 import { useInput, Validator } from '../../../hooks/useInput';
-import { api } from '../../..';
+import { api } from './../../../store/store';
 import StarInput from './../star-input/star-input';
 import ValidatorMessage from '../../validator-message/validator-message';
 import { adaptCommentToClient } from '../../../util';

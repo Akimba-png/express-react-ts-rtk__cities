@@ -37,4 +37,5 @@ function MainCardsContainer({sortedOffers, handleActiveCardChange}: PropsFromRed
   );
 }
 
+export { MainCardsContainer };
 export default connector(MainCardsContainer);

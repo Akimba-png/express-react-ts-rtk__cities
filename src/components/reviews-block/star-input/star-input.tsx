@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-type StarInputProps = {
+export type StarInputProps = {
   rating: number;
   title: string;
   currentValue: string;
@@ -23,6 +23,7 @@ function StarInput({
         id={`${rating}-stars`}
         type="radio"
         checked={rating === Number(currentValue)}
+        data-testid={`star-input-${rating}`}
       />
       <label
         htmlFor={`${rating}-stars`}
