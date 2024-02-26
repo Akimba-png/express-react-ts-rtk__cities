@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static('src'));
-app.use('/', (req, res) => { res.send('hello')});
+app.use('/hotels', hotelRouter);
+
 
 app.listen(PORT, () => console.log(`App is listeninig on port ${PORT}`));
