@@ -9,6 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('src'));
 app.use('/hotels', hotelRouter);
-
+app.use('/login', (req, res) => { res.status(401).send('unauthorized') });
 
 app.listen(PORT, () => console.log(`App is listeninig on port ${PORT}`));

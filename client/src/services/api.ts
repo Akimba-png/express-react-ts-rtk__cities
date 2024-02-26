@@ -7,7 +7,7 @@ import axios, {
 
 import { AUTHORISATION_TOKEN, getToken } from './token';
 
-const BASE_URL = 'https://8.react.pages.academy/six-cities';
+const BASE_URL = 'http://localhost:5000';
 const REQUEST_TIMEOUT = 5000;
 const UNAUTHORIZED_STATUS_CODE = 401;
 
