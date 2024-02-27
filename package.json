@@ -1,0 +1,24 @@
+{
+  "name": "react-ts-rtk__cities",
+  "version": "1.0.0",
+  "description": "Сервис для путешественников по выбору арендуемого жилья.   Выбирайте один из шести популярных городов, применяйте сортировку   и получайте актуальный список предложений синхронизированный с интерактивной картой.   Для каждого предложения доступна отдельная страница с описанием,   а для зарегистрированных пользователей доступен просмотр избранных предложений.   Общее кол-во страниц в сервисе - 5",
+  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "8.2.2"
+  },
+  "scripts": {
+    "server-start": "cd server && npm run dev",
+    "client-start": "cd client && npm run start",
+    "dev": "concurrently \"npm run server-start\" \"npm run client-start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akimba-png/react-ts-rtk__cities.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akimba-png/react-ts-rtk__cities/issues"
+  },
+  "homepage": "https://github.com/Akimba-png/react-ts-rtk__cities#readme"
+}
