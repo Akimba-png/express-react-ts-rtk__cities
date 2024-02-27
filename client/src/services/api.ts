@@ -8,7 +8,7 @@ import axios, {
 import { AUTHORISATION_TOKEN, getToken } from './token';
 
 const BASE_URL = 'https://express-cities.onrender.com';
-const REQUEST_TIMEOUT = 5000;
+const REQUEST_TIMEOUT = 60000;
 const UNAUTHORIZED_STATUS_CODE = 401;
 
 const token = getToken();
