@@ -21,6 +21,16 @@ class HotelController {
       res.status(500).json( {message: 'something goes wrong'} );
     }
   };
+
+  async getNearby(req: Request<{id: string}>, res: Response, next: NextFunction) {
+    try {
+      const id = Number(req.params.id);
+      const nearbys = await hotelService.getNearbys(id);
+      res.status(200).json(nearbys);
+    } catch (error) {
+      res.status(500).json( {message: 'something goes wrong'} );
+    }
+  }
 }
 
 export const hotelController = new HotelController();
