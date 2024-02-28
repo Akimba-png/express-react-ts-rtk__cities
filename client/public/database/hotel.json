@@ -1,0 +1,57 @@
+{
+  "city": {
+    "name": "Amsterdam",
+    "location": {
+      "latitude": 52.37454,
+      "longitude": 4.897976,
+      "zoom": 13
+    }
+  },
+  "preview_image": "https://express-cities.onrender.com/static/hotel/15.jpg",
+  "images": [
+    "https://express-cities.onrender.com/static/hotel/13.jpg",
+    "https://express-cities.onrender.com/static/hotel/19.jpg",
+    "https://express-cities.onrender.com/static/hotel/7.jpg",
+    "https://express-cities.onrender.com/static/hotel/8.jpg",
+    "https://express-cities.onrender.com/static/hotel/9.jpg",
+    "https://express-cities.onrender.com/static/hotel/17.jpg",
+    "https://express-cities.onrender.com/static/hotel/20.jpg",
+    "https://express-cities.onrender.com/static/hotel/5.jpg",
+    "https://express-cities.onrender.com/static/hotel/1.jpg",
+    "https://express-cities.onrender.com/static/hotel/11.jpg",
+    "https://express-cities.onrender.com/static/hotel/18.jpg",
+    "https://express-cities.onrender.com/static/hotel/16.jpg",
+    "https://express-cities.onrender.com/static/hotel/12.jpg",
+    "https://express-cities.onrender.com/static/hotel/6.jpg"
+  ],
+  "title": "Wood and stone place",
+  "is_favorite": false,
+  "is_premium": false,
+  "rating": 4.2,
+  "type": "apartment",
+  "bedrooms": 2,
+  "max_adults": 2,
+  "price": 114,
+  "goods": [
+    "Air conditioning",
+    "Breakfast",
+    "Laptop friendly workspace",
+    "Washer",
+    "Fridge",
+    "Baby seat",
+    "Towels"
+  ],
+  "host": {
+    "id": 25,
+    "name": "Angelina",
+    "is_pro": true,
+    "avatar_url": "img/avatar-angelina.jpg"
+  },
+  "description": "Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.",
+  "location": {
+    "latitude": 52.388540000000006,
+    "longitude": 4.899976,
+    "zoom": 16
+  },
+  "id": 1
+}

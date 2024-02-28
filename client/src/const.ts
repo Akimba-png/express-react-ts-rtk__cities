@@ -118,7 +118,7 @@ export const signInvalidatorMessageStyle = {
 };
 
 export enum ErrorToastParam {
-  Text = 'Something strange is going here...\nTry again later...',
+  Text = 'Server is unavailable...\nTry again later...',
   ShowTime = 3000,
   OfferShowTime = 4000,
 }

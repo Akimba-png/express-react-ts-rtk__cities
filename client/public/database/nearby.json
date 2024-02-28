@@ -1,0 +1,175 @@
+[
+  {
+      "city": {
+          "name": "Paris",
+          "location": {
+              "latitude": 48.85661,
+              "longitude": 2.351499,
+              "zoom": 13
+          }
+      },
+      "preview_image": "https://express-cities.onrender.com/static/hotel/20.jpg",
+      "images": [
+          "https://express-cities.onrender.com/static/hotel/15.jpg",
+          "https://express-cities.onrender.com/static/hotel/8.jpg",
+          "https://express-cities.onrender.com/static/hotel/14.jpg",
+          "https://express-cities.onrender.com/static/hotel/17.jpg",
+          "https://express-cities.onrender.com/static/hotel/13.jpg",
+          "https://express-cities.onrender.com/static/hotel/18.jpg",
+          "https://express-cities.onrender.com/static/hotel/4.jpg",
+          "https://express-cities.onrender.com/static/hotel/5.jpg",
+          "https://express-cities.onrender.com/static/hotel/12.jpg",
+          "https://express-cities.onrender.com/static/hotel/1.jpg",
+          "https://express-cities.onrender.com/static/hotel/10.jpg",
+          "https://express-cities.onrender.com/static/hotel/7.jpg",
+          "https://express-cities.onrender.com/static/hotel/3.jpg",
+          "https://express-cities.onrender.com/static/hotel/11.jpg"
+      ],
+      "title": "Nice, cozy, warm big bed apartment",
+      "is_favorite": false,
+      "is_premium": false,
+      "rating": 4.7,
+      "type": "apartment",
+      "bedrooms": 2,
+      "max_adults": 6,
+      "price": 203,
+      "goods": [
+          "Baby seat",
+          "Washer",
+          "Air conditioning",
+          "Breakfast",
+          "Towels",
+          "Laptop friendly workspace"
+      ],
+      "host": {
+          "id": 25,
+          "name": "Angelina",
+          "is_pro": true,
+          "avatar_url": "img/avatar-angelina.jpg"
+      },
+      "description": "Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.",
+      "location": {
+          "latitude": 48.868610000000004,
+          "longitude": 2.342499,
+          "zoom": 16
+      },
+      "id": 23
+  },
+  {
+      "city": {
+          "name": "Paris",
+          "location": {
+              "latitude": 48.85661,
+              "longitude": 2.351499,
+              "zoom": 13
+          }
+      },
+      "preview_image": "https://express-cities.onrender.com/static/hotel/16.jpg",
+      "images": [
+          "https://express-cities.onrender.com/static/hotel/3.jpg",
+          "https://express-cities.onrender.com/static/hotel/17.jpg",
+          "https://express-cities.onrender.com/static/hotel/14.jpg",
+          "https://express-cities.onrender.com/static/hotel/16.jpg",
+          "https://express-cities.onrender.com/static/hotel/18.jpg",
+          "https://express-cities.onrender.com/static/hotel/8.jpg",
+          "https://express-cities.onrender.com/static/hotel/13.jpg",
+          "https://express-cities.onrender.com/static/hotel/6.jpg",
+          "https://express-cities.onrender.com/static/hotel/9.jpg",
+          "https://express-cities.onrender.com/static/hotel/19.jpg",
+          "https://express-cities.onrender.com/static/hotel/2.jpg",
+          "https://express-cities.onrender.com/static/hotel/10.jpg",
+          "https://express-cities.onrender.com/static/hotel/12.jpg",
+          "https://express-cities.onrender.com/static/hotel/7.jpg"
+      ],
+      "title": "Penthouse, 4-5 rooms + 5 balconies",
+      "is_favorite": false,
+      "is_premium": false,
+      "rating": 3.9,
+      "type": "room",
+      "bedrooms": 1,
+      "max_adults": 1,
+      "price": 114,
+      "goods": [
+          "Air conditioning",
+          "Towels",
+          "Washer",
+          "Baby seat",
+          "Dishwasher",
+          "Fridge",
+          "Breakfast",
+          "Laptop friendly workspace"
+      ],
+      "host": {
+          "id": 25,
+          "name": "Angelina",
+          "is_pro": true,
+          "avatar_url": "img/avatar-angelina.jpg"
+      },
+      "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+      "location": {
+          "latitude": 48.83961,
+          "longitude": 2.342499,
+          "zoom": 16
+      },
+      "id": 37
+  },
+  {
+      "city": {
+          "name": "Paris",
+          "location": {
+              "latitude": 48.85661,
+              "longitude": 2.351499,
+              "zoom": 13
+          }
+      },
+      "preview_image": "https://express-cities.onrender.com/static/hotel/4.jpg",
+      "images": [
+          "https://express-cities.onrender.com/static/hotel/6.jpg",
+          "https://express-cities.onrender.com/static/hotel/15.jpg",
+          "https://express-cities.onrender.com/static/hotel/11.jpg",
+          "https://express-cities.onrender.com/static/hotel/20.jpg",
+          "https://express-cities.onrender.com/static/hotel/2.jpg",
+          "https://express-cities.onrender.com/static/hotel/1.jpg",
+          "https://express-cities.onrender.com/static/hotel/13.jpg",
+          "https://express-cities.onrender.com/static/hotel/3.jpg",
+          "https://express-cities.onrender.com/static/hotel/5.jpg",
+          "https://express-cities.onrender.com/static/hotel/10.jpg",
+          "https://express-cities.onrender.com/static/hotel/9.jpg",
+          "https://express-cities.onrender.com/static/hotel/16.jpg",
+          "https://express-cities.onrender.com/static/hotel/14.jpg",
+          "https://express-cities.onrender.com/static/hotel/4.jpg"
+      ],
+      "title": "Canal View Prinsengracht",
+      "is_favorite": false,
+      "is_premium": false,
+      "rating": 4.7,
+      "type": "house",
+      "bedrooms": 5,
+      "max_adults": 6,
+      "price": 820,
+      "goods": [
+          "Washer",
+          "Dishwasher",
+          "Fridge",
+          "Coffee machine",
+          "Laptop friendly workspace",
+          "Baby seat",
+          "Air conditioning",
+          "Towels",
+          "Breakfast"
+      ],
+      "host": {
+          "id": 25,
+          "name": "Angelina",
+          "is_pro": true,
+          "avatar_url": "img/avatar-angelina.jpg"
+      },
+      "description": "I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!",
+      "location": {
+          "latitude": 48.834610000000005,
+          "longitude": 2.364499,
+          "zoom": 16
+      },
+      "id": 40
+  }
+]

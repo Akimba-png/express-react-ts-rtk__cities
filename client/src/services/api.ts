@@ -4,11 +4,12 @@ import axios, {
   AxiosError,
   AxiosRequestConfig,
 } from 'axios';
-
+import { parseUrl } from '../util';
 import { AUTHORISATION_TOKEN, getToken } from './token';
 
+
 const BASE_URL = 'https://express-cities.onrender.com';
-const REQUEST_TIMEOUT = 60000;
+const REQUEST_TIMEOUT = 3000;
 const UNAUTHORIZED_STATUS_CODE = 401;
 
 const token = getToken();
@@ -31,11 +32,24 @@ export const createApi = (onUnauthorized: () => void): AxiosInstance => {
 
   const onSuccess = (response: AxiosResponse) => response;
 
-  const onFail = (error: AxiosError) => {
-    if (error.response?.status === UNAUTHORIZED_STATUS_CODE) {
-      onUnauthorized();
+  const onFail = async (error: AxiosError) => {
+    try {
+      const config = error.config;
+      if (config && error.code === "ECONNABORTED" && config.method === 'get') {
+        config.baseURL = 'database';
+        const url = parseUrl(config.url!);
+        config.url = url;
+        return await api.request(config);
+      }
+      if (config && error.code === "ECONNABORTED" && config.url === '/login') {
+        onUnauthorized();
+      }
+      if (error.response?.status === UNAUTHORIZED_STATUS_CODE) {
+        onUnauthorized();
+      }
+    } catch (error) {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
   };
 
   api.interceptors.request.use(onSend);

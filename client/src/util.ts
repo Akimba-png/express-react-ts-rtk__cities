@@ -85,3 +85,10 @@ export const getOffersByCity = (offers: Offer[]) =>
 export const notify = () => {
   toast.error(ErrorToastParam.Text, {autoClose: ErrorToastParam.ShowTime as number});
 };
+
+export const parseUrl = (url: string) => {
+  if (url.includes('nearby')) { return '/nearby.json' }
+  if (/hotels\/\d+/.test(url)) { return '/hotel.json' }
+  if (url.includes('hotels')) { return '/hotels.json' }
+  if (url.includes('comments')) { return '/comments.json' }
+};
