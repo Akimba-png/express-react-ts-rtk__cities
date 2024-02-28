@@ -87,8 +87,8 @@ export const notify = () => {
 };
 
 export const parseUrl = (url: string) => {
-  if (url.includes('nearby')) { return '/nearby.json' }
-  if (/hotels\/\d+/.test(url)) { return '/hotel.json' }
-  if (url.includes('hotels')) { return '/hotels.json' }
-  if (url.includes('comments')) { return '/comments.json' }
+  if (url.includes('nearby')) { return '/nearby.json'; }
+  if (/hotels\/\d+/.test(url)) { return '/hotel.json'; }
+  if (url.includes('hotels')) { return '/hotels.json'; }
+  if (url.includes('comments')) { return '/comments.json'; }
 };
