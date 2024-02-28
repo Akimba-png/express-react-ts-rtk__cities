@@ -5,7 +5,7 @@
       "id": 10,
       "is_pro": true,
       "name": "Max",
-      "avatar_url": "https://express-cities.onrender.com/static/avatar/1.jpg"
+      "avatar_url": "static/avatar/1.jpg"
     },
     "rating": 5,
     "comment": "Bathed in the nature. Completely unplugged. Unforgettable.",
@@ -17,7 +17,7 @@
       "id": 18,
       "is_pro": true,
       "name": "Sophie",
-      "avatar_url": "https://express-cities.onrender.com/static/avatar/2.jpg"
+      "avatar_url": "static/avatar/2.jpg"
     },
     "rating": 2,
     "comment": "The room was spacious and clean. The pool looked nothing like the photos and desparately needs a clean. The sauna and spa were closed for lunar new year holiday.",
@@ -29,7 +29,7 @@
       "id": 16,
       "is_pro": true,
       "name": "Mollie",
-      "avatar_url": "https://express-cities.onrender.com/static/avatar/3.jpg"
+      "avatar_url": "static/avatar/3.jpg"
     },
     "rating": 3,
     "comment": "The deluxe room was a quite comfortable one with all the adequate facilities. The only thing that made me feel uncomfortable was the rude behavior of an impolite staff at the reception desk.",
