@@ -35,14 +35,23 @@ export const createApi = (onUnauthorized: () => void): AxiosInstance => {
   const onFail = async (error: AxiosError) => {
     try {
       const config = error.config;
-      if (config.url && error.code === 'ECONNABORTED' && config.method === 'get') {
+      if (
+        config &&
+        error.code === 'ECONNABORTED' &&
+        config.url === '/login' &&
+        config.method === 'get'
+      ) {
+        onUnauthorized();
+      }
+      if (
+        config.url &&
+        error.code === 'ECONNABORTED'
+        && config.method === 'get'
+      ) {
         config.baseURL = 'database';
         const url = parseUrl(config.url);
         config.url = url;
         return await api.request(config);
-      }
-      if (config && error.code === 'ECONNABORTED' && config.url === '/login') {
-        onUnauthorized();
       }
       if (error.response?.status === UNAUTHORIZED_STATUS_CODE) {
         onUnauthorized();
